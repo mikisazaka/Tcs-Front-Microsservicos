@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { TelaInicialComponent } from './tela-inicial.component.js';
+import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [TelaInicialComponent],
