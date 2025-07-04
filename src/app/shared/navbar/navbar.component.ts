@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +7,4 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
-  constructor(private router: Router) { }
-
-  abrirMenuLateral() {
-    this.router.navigate(['/menubar']);
-  }
 }

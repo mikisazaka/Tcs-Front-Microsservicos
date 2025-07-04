@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
-import { HomePageComponent } from './home-page/home-page.component';
 
 export const routes: Routes = [
-  { path: '', component: TelaInicialComponent },
-  { path: 'homepage', component: HomePageComponent }
+  {
+    path: '',
+    loadChildren: () =>
+      import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule)
+  },
+  {
+    path: 'homepage',
+    loadChildren: () =>
+      import('./home-page/home-page.module').then((m) => m.HomePageModule)
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: false })], 
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
