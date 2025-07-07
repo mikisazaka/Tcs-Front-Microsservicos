@@ -9,9 +9,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'brown-light': '#ce7e5d',
-        'brown-dark': '#a2543d',
-        'beige-light': '#f7d1ba'
+        'brown': {
+          'light': '#ce7e5d',
+          'dark': '#a2543d'
+        },
+        'beige': {
+          'light': '#f7d1ba'
+        }
+      },
+
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
       }
     }
   },
