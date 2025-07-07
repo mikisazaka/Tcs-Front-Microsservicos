@@ -1,0 +1,8 @@
+#botao-login {
+    transition: all 0.3s ease;
+}
+
+#botao-login:hover {
+    background-color: #8f4b37;
+    transform: scale(1.1);
+}

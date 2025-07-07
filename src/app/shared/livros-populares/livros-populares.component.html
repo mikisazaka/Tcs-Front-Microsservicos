@@ -1,15 +1,13 @@
 <div class="py-16 sm:py-24">
-        <h2 class="text-center text-2xl sm:text-3xl md:text-4xl mb-8 pb-12">
-            Descubra o que está em alta
-        </h2>
+  <h2 class="text-center text-2xl sm:text-3xl md:text-4xl mb-8 pb-12">
+    Descubra o que está em alta
+  </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div
-          *ngFor="let livro of livrosEmAlta"
-          class="relative bg-black/60 rounded-md h-48 flex items-end justify-center hover:bg-black/80 transition overflow-hidden"
-        >
-          <img [src]="livro.imagem" [alt]="livro.titulo" class="absolute w-full h-full object-cover opacity-30" />
-          <span class="text-white mb-4 relative z-10 text-center text-sm sm:text-base">{{ livro.titulo }}</span>
-        </div>
-      </div>
+  <div class="grid grid-cols-4 sm:grid-cols-2 gap-4">
+    <div *ngFor="let livro of livrosEmAlta"
+      class="relative bg-black/60 rounded-md h-80 flex items-end justify-center hover:bg-black/80 transition overflow-hidden">
+      <img [src]="livro.imagem" [alt]="livro.titulo" class="absolute w-full h-full object-cover" />
+      <span class="text-white mb-4 relative z-10 text-center text-sm sm:text-base">{{ livro.titulo }}</span>
     </div>
+  </div>
+</div>

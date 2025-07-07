@@ -11,11 +11,16 @@ export const routes: Routes = [
     path: 'homepage',
     loadChildren: () =>
       import('./home-page/home-page.module').then((m) => m.HomePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
