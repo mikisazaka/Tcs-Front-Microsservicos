@@ -12,6 +12,6 @@ export class LivrosPopularesComponent {
     { titulo: 'Harry Potter', imagem: 'assets/images/harry-potter.jpg' },
     { titulo: 'O Pequeno Príncipe', imagem: 'assets/images/pequeno-principe.jpg' },
     { titulo: 'O Hobbit', imagem: 'assets/images/hobbit.jpg' },
-    { titulo: 'Diário de Anne Frank', imagem: 'assets/images/anne-frank.webp' },
+    { titulo: 'O Diário de Anne Frank', imagem: 'assets/images/anne-frank.webp' },
   ];
 }
