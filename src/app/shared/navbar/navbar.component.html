@@ -9,10 +9,14 @@
     <div class="w-auto">
       <ul class="font-medium flex flex-row space-x-8 rtl:space-x-reverse">
         <li>
-          <a href="#" class="text-white hover:text-shadow-lg/30 text-xl" aria-current="page">Home</a>
+          <button>
+            <a (click)="goToHome()" class="text-white hover:text-shadow-lg/30 text-xl" aria-current="page">Home</a>
+          </button>
         </li>
         <li>
-          <a href="#" class="text-white hover:text-shadow-lg/30 text-xl">Seleção de Livros</a>
+          <button>
+            <a (click)="goToLivros()" class="text-white hover:text-shadow-lg/30 text-xl">Seleção de Livros</a>
+          </button>
         </li>
       </ul>
     </div>

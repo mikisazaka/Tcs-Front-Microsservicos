@@ -3,9 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadChildren: () =>
-      import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule)
+    path: '', redirectTo: '/telaInicial', pathMatch: 'full'
   },
   {
     path: 'homepage',
@@ -16,6 +14,11 @@ export const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModule)
+  },
+  {
+    path: 'telaInicial',
+    loadChildren: () =>
+      import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule)
   }
 ];
 
