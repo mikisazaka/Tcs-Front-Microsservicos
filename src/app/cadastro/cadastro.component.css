@@ -1,0 +1,5 @@
+@use '@angular/material' as mat;
+
+.cadastro-container {
+    height: calc(100vh - 72px);
+}

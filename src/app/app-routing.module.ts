@@ -19,7 +19,11 @@ export const routes: Routes = [
     path: 'telaInicial',
     loadChildren: () =>
       import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule)
-  }
+  },
+  { 
+    path: 'cadastro', 
+    loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule) 
+  },
 ];
 
 @NgModule({

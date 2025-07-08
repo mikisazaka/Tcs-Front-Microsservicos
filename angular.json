@@ -34,7 +34,8 @@
               "src/custom-theme.scss",
               "src/styles.css",
               "src/custom-theme.scss",
-              "node_modules/flowbite/dist/flowbite.min.css"
+              "node_modules/flowbite/dist/flowbite.min.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": [
               "node_modules/flowbite/dist/flowbite.min.js"
