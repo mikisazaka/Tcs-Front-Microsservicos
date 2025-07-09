@@ -12,7 +12,7 @@ export class NavbarComponent {
   constructor(private router: Router) { }
 
   goToHome() {
-    this.router.navigate(['/homepage']);
+    this.router.navigate(['/telaInicial']);
   }
 
   goToLivros() {
