@@ -9,26 +9,15 @@
     </div>
 
     <div class="w-auto">
-      <ul class="font-medium flex flex-row space-x-8 rtl:space-x-reverse justify-center items-center">
+      <ul class="font-medium flex flex-row space-x-8 rtl:space-x-reverse">
         <li>
-          <button mat-raised-button color="accent">
-            <a (click)="goToLivros()" style="cursor: pointer;">
-              Seleção de Livros
-            </a>
+          <button>
+            <a (click)="goToHome()" class="text-white hover:text-shadow-lg/30 text-xl" aria-current="page" style="cursor: pointer;">Home</a>
           </button>
         </li>
         <li>
-          <button *ngIf="authService.isAdmin()" mat-raised-button color="accent">
-            <a (click)="goToAdminPage()">
-              Painel do Administrador
-            </a>
-          </button>
-        </li>
-        <li>
-          <button *ngIf="authService.isLoggedIn()" mat-raised-button color="accent">
-            <a (click)="logout()">
-              Logout
-            </a>
+          <button>
+            <a (click)="goToLivros()" class="text-white hover:text-shadow-lg/30 text-xl" style="cursor: pointer;">Seleção de Livros</a>
           </button>
         </li>
       </ul>

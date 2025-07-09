@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'app/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +9,7 @@ import { AuthService } from 'app/auth/auth.service';
 })
 export class NavbarComponent {
 
-  constructor(public router: Router, public authService: AuthService) { }
+  constructor(private router: Router) { }
 
   goToHome() {
     this.router.navigate(['/telaInicial']);
@@ -18,14 +17,5 @@ export class NavbarComponent {
 
   goToLivros() {
     this.router.navigate(['/']);
-  }
-
-  logout(): void {
-    localStorage.removeItem('authToken');
-    window.location.href = '/login';
-  }
-
-  goToAdminPage() {
-    this.router.navigate(['/admin'])
   }
 }

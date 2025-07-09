@@ -20,13 +20,13 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule)
   },
-  { 
-    path: 'cadastro', 
-    loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule) 
+  {
+    path: 'cadastro',
+    loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule)
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
+    path: 'adicionarLivro',
+    loadChildren: () => import('./adicionar-livro/adicionar-livro.module').then(m => m.AdicionarLivroModule)
   }
 ];
 
