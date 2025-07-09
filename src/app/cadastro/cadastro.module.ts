@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Para formulários
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
-// Imports do Angular Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -21,13 +20,13 @@ import { CadastroComponent } from './cadastro.component';
     CommonModule,
     CadastroRoutingModule,
     RouterModule,
-    FormsModule, // Ou ReactiveFormsModule
-    // Módulos do Material
+    FormsModule, 
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ]
 })
 export class CadastroModule { }
