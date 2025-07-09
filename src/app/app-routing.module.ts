@@ -24,6 +24,10 @@ export const routes: Routes = [
     path: 'cadastro', 
     loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule) 
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
+  }
 ];
 
 @NgModule({
