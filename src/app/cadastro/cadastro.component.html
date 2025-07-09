@@ -36,10 +36,13 @@
           <input matInput type="password" placeholder="********" formControlName="password" required />
         </mat-form-field>
 
-        <div class="flex justify-center">
+        <div class="flex justify-center items-center" style="gap: 1rem;">
           <button mat-flat-button class="login-button" type="submit">
             CONFIRMAR
           </button>
+          <a (click)="goToLogin()" class="go-to-login-btn">
+            Fazer login
+          </a>
         </div>
       </form>
     </mat-card-content>

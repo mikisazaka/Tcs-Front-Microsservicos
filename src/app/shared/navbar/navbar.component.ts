@@ -28,4 +28,8 @@ export class NavbarComponent {
   goToAdminPage() {
     this.router.navigate(['/admin'])
   }
+
+  goToLogin() {
+    this.router.navigate(['/login'])
+  }
 }
