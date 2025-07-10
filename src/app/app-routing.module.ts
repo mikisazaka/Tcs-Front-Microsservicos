@@ -13,7 +13,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginModule)
+      import('./user/login/login.module').then((m) => m.LoginModule)
   },
   {
     path: 'telaInicial',
@@ -22,11 +22,15 @@ export const routes: Routes = [
   },
   { 
     path: 'cadastro', 
-    loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule) 
+    loadChildren: () => import('./user/cadastro/cadastro.module').then(m => m.CadastroModule) 
   },
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
+  },
+  { 
+    path: 'livro', 
+    loadChildren: () => import('./livro/livro.module').then(m => m.LivroModule) 
   }
 ];
 

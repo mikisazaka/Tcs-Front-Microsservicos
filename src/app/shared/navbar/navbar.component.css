@@ -5,3 +5,12 @@ a {
 a:hover {
     transform: scale(1.1);
 }
+
+#botao-login {
+    background-color: #a2543d;
+    border-radius: 5px;
+    padding: .5rem;
+    width: 5rem;
+    color: #fff;
+    cursor: pointer;
+}
