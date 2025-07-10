@@ -11,7 +11,7 @@ import { AuthService } from 'app/auth/auth.service';
   
 export class NavbarComponent {
 
-  constructor(private router: Router) { }
+  constructor(public router: Router, public authService: AuthService) { }
 
   goToHome() {
     this.router.navigate(['/telaInicial']);
