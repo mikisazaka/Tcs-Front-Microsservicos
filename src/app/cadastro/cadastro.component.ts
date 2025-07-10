@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
-import Swal from 'sweetalert2';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-cadastro',
   standalone: false,
   templateUrl: './cadastro.component.html',
-  styleUrl: './cadastro.component.css',
+  styleUrl: './cadastro.component.css'
 })
 
 export class CadastroComponent implements OnInit {

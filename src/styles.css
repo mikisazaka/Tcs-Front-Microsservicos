@@ -1,8 +1,10 @@
 @tailwind base;
 @tailwind components;
-@import 'flowbite';
+@import "flowbite";
 @tailwind utilities;
 @import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
 @import '@fontsource/inter/variable.css'; 
 
 html, body { height: 100%; }
