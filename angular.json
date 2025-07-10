@@ -33,7 +33,6 @@
             "styles": [
               "src/custom-theme.scss",
               "src/styles.css",
-              "src/custom-theme.scss",
               "node_modules/flowbite/dist/flowbite.min.css"
             ],
             "scripts": [

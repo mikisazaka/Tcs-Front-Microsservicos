@@ -3,7 +3,13 @@
 @import 'flowbite';
 @tailwind utilities;
 @import "flowbite/src/themes/default";
-@import '@fontsource/inter/variable.css'; 
+@import '@fontsource/inter/variable.css';
+
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Inter', sans-serif; }
+body {
+  background-color: #ce7e5d; /* Sua cor 'brown-light' */
+}
+
