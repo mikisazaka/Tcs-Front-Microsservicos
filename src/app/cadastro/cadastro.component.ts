@@ -62,4 +62,8 @@ export class CadastroComponent implements OnInit {
       },
     });
   }
+
+  goToLogin() {
+    this.router.navigate(['/login'])
+  }
 }

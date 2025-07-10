@@ -4,11 +4,13 @@ import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-admin-page',
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule
   ],
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.css',
