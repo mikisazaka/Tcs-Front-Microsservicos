@@ -19,18 +19,30 @@
                     <input matInput type="text" placeholder="Sobrenome" required>
                   </mat-form-field>
 
-                <mat-form-field class="w-full">
-                  <mat-label>Email</mat-label>
-                  <input matInput type="email" placeholder="seu@email.com" required>
-                </mat-form-field>
-                
-    
-                <div class="flex justify-center">
-                    <button mat-flat-button class="login-button" type="submit">CONFIRMAR</button>
-                </div>
-        
-              </form>
-            </mat-card-content>
-        
-          </mat-card>
-    </div>
+        <mat-form-field class="w-full">
+          <mat-label>Sobrenome</mat-label>
+          <input matInput type="text" placeholder="Sobrenome" formControlName="lastName" required />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="seu@email.com" formControlName="email" required />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" placeholder="********" formControlName="password" required />
+        </mat-form-field>
+
+        <div class="flex justify-center items-center" style="gap: 1rem;">
+          <button mat-flat-button class="login-button" type="submit">
+            CONFIRMAR
+          </button>
+          <a (click)="goToLogin()" class="go-to-login-btn">
+            Fazer login
+          </a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -18,4 +18,17 @@ export class NavbarComponent {
   goToLivros() {
     this.router.navigate(['/']);
   }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    window.location.href = '/login';
+  }
+
+  goToAdminPage() {
+    this.router.navigate(['/admin'])
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login'])
+  }
 }
