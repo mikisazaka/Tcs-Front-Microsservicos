@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, catchError, EMPTY } from 'rxjs';
 import { User } from '../../models/user.model';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
