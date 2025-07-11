@@ -1,0 +1,65 @@
+<div>
+  <app-full-screen-message *ngIf="errorMessage"></app-full-screen-message>
+
+  <div
+    *ngIf="usersPage"
+    class="grid justify-center"
+    style="align-items: center; height: calc(100vh - 72px)"
+  >
+    <table
+      id="tabela-usuarios"
+      class="table table-striped"
+      *ngIf="usersPage.content.length > 0; else noUsers"
+    >
+      <thead id="header-tabela">
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersPage.content">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button class="btn btn-sm btn-danger">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="usersPage.totalPages > 1" class="flex justify-center items-center mt-3 gap-5">
+        <button 
+            class="btn btn-outline-primary" 
+            style="color: blue; cursor: pointer;"
+            (click)="previousPage()" 
+            [disabled]="usersPage.number === 0">
+            Anterior
+        </button>
+
+        <span class="mx-3">
+            Página {{ usersPage.number + 1 }} de {{ usersPage.totalPages }}
+        </span>
+
+        <button 
+            class="btn btn-outline-primary" 
+            style="color: blue; cursor: pointer;"
+            (click)="nextPage()" 
+            [disabled]="usersPage.number >= usersPage.totalPages - 1">
+            Próximo
+        </button>
+    </div>
+
+
+    <ng-template #noUsers>
+      <p class="alert alert-info">Nenhum usuário encontrado.</p>
+    </ng-template>
+  </div>
+</div>

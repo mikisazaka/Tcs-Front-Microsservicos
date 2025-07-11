@@ -1,11 +1,11 @@
 @tailwind base;
 @tailwind components;
-@import 'flowbite';
+@import "flowbite";
 @tailwind utilities;
 @import "flowbite/src/themes/default";
-@import '@fontsource/inter/variable.css';
-
-
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+@import '@fontsource/inter/variable.css'; 
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Inter', sans-serif; }
