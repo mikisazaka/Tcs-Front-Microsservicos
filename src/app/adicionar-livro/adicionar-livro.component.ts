@@ -12,11 +12,13 @@ import { initFlowbite } from 'flowbite';
 export class AdicionarLivroComponent implements AfterViewInit {
 
   book: Book = {
-    id: 0, title: '', author: '', publishedYear: 0, genre: '',
+    title: '', author: '', publishedYear: 0, genre: '',
     pagesQuantity: 0, contentRating: '', image: null
   };
-  selectedGenre: string = "";
-  selectedContentRating: string = "";
+  genres = ['Romance', 'Terror', 'Fantasia', 'Drama', 'Mistério', 'Suspense'];
+  contentRatings = ['Livre', '10', '12', '14', '16', '18'];
+  selectedGenre: string = "Terror";
+  selectedContentRating: string = "10";
 
   constructor(private bookService: BookService) { }
 
@@ -36,7 +38,7 @@ export class AdicionarLivroComponent implements AfterViewInit {
     this.bookService.registrarLivro(this.book).subscribe({
       next: (value) => {
         this.book = {
-          id: 0, title: '', author: '', publishedYear: 0, genre: '',
+          title: '', author: '', publishedYear: 0, genre: '',
           pagesQuantity: 0, contentRating: '', image: null
         };
       }
