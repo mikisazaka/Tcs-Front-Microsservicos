@@ -8,7 +8,7 @@ import { AuthService } from 'app/auth/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-  
+
 export class NavbarComponent {
 
   constructor(public router: Router, public authService: AuthService) { }
