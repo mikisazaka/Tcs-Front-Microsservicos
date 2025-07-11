@@ -18,7 +18,6 @@
           <th>Sobrenome</th>
           <th>Email</th>
           <th>Role</th>
-          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -28,18 +27,15 @@
           <td>{{ user.lastName }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
-          <td>
-            <button class="btn btn-sm btn-danger">Excluir</button>
-          </td>
         </tr>
       </tbody>
     </table>
 
     <div *ngIf="usersPage.totalPages > 1" class="flex justify-center items-center mt-3 gap-5">
-        <button 
-            class="btn btn-outline-primary" 
+        <button
+            class="btn btn-outline-primary"
             style="color: blue; cursor: pointer;"
-            (click)="previousPage()" 
+            (click)="previousPage()"
             [disabled]="usersPage.number === 0">
             Anterior
         </button>
@@ -48,10 +44,10 @@
             Página {{ usersPage.number + 1 }} de {{ usersPage.totalPages }}
         </span>
 
-        <button 
-            class="btn btn-outline-primary" 
+        <button
+            class="btn btn-outline-primary"
             style="color: blue; cursor: pointer;"
-            (click)="nextPage()" 
+            (click)="nextPage()"
             [disabled]="usersPage.number >= usersPage.totalPages - 1">
             Próximo
         </button>
