@@ -18,7 +18,7 @@ export class NavbarComponent {
   }
 
   goToLivros() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/select-books']);
   }
 
   logout(): void {
