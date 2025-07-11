@@ -8,9 +8,10 @@ import { AuthService } from 'app/auth/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
+  
 export class NavbarComponent {
 
-  constructor(private router: Router, public authService: AuthService) { }
+  constructor(public router: Router, public authService: AuthService) { }
 
   goToHome() {
     this.router.navigate(['/telaInicial']);
