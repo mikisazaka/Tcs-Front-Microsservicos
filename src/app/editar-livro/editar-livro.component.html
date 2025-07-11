@@ -45,68 +45,18 @@
                         </div>
                     </button>
 
-                    <div id="genreRadio"
+                    <div id="genreRadio" 
                         class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownGenre">
+                            aria-labelledby="dropdownGenre" *ngFor="let genre of genres">
                             <li>
                                 <div class="flex items-center">
-                                    <input id="radio-romance" type="radio" value="" name="genre"
-                                        (change)="selectedGenre='Romance'" checked
+                                    <input [id]="genre" type="radio" [value]="genre" name="genre"
+                                        [(ngModel)]="selectedGenre"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
                                         dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-romance"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Romance</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input checked id="radio-terror" type="radio" value="" name="genre"
-                                        (change)="selectedGenre='Terror'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-terror"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Terror</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-fantasy" type="radio" value="" name="genre"
-                                        (change)="selectedGenre='Fantasia'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-fantasy"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fantasia</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-drama" type="radio" value="" name="genre"
-                                        (change)="selectedGenre='Drama'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-drama"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Drama</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-mistery" type="radio" value="" name="genre"
-                                        (change)="selectedGenre='Mistério'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-mistery"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mistério</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-suspense" type="radio" value="" name="genre"
-                                        (change)="selectedGenre='Suspense'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-suspense"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Suspense</label>
+                                    <label for="{{genre}}"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{genre}}</label>
                                 </div>
                             </li>
                         </ul>
@@ -143,68 +93,18 @@
                         </div>
                     </button>
 
-                    <div id="contentRatingRadio"
+                    <div id="contentRatingRadio" 
                         class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownContentRating">
+                            aria-labelledby="dropdownContentRating" *ngFor="let contentRating of contentRatings">
                             <li>
                                 <div class="flex items-center">
-                                    <input id="radio-livre" type="radio" value="" name="contentRating"
-                                        (change)="selectedContentRating='Livre'" checked
+                                    <input [id]="contentRating" type="radio" [value]="contentRating" name="contentRating"
+                                        [(ngModel)]="selectedContentRating"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
                                         dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-livre"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Livre</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input checked id="radio-10" type="radio" value="" name="contentRating"
-                                        (change)="selectedContentRating='10'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-10"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">10</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-12" type="radio" value="" name="contentRating"
-                                        (change)="selectedContentRating='12'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-12"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">12</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-14" type="radio" value="" name="contentRating"
-                                        (change)="selectedContentRating='14'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-14"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">14</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-16" type="radio" value="" name="contentRating"
-                                        (change)="selectedContentRating='16'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-16"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">16</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="radio-18" type="radio" value="" name="contentRating"
-                                        (change)="selectedContentRating='18'"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="radio-18"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">18</label>
+                                    <label for="{{contentRating}}"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{contentRating}}</label>
                                 </div>
                             </li>
                         </ul>

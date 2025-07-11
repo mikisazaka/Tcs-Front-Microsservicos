@@ -1,4 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { Book } from 'app/models/book.model';
+import { BookService } from 'app/services/book/book.service';
 import { initFlowbite } from 'flowbite';
 
 @Component({
@@ -9,10 +11,16 @@ import { initFlowbite } from 'flowbite';
 })
 export class EditarLivroComponent implements AfterViewInit {
 
-  selectedGenre: string = "";
-  selectedContentRating: string = "";
+  book: Book = {
+    title: '', author: '', publishedYear: 0, genre: '',
+    pagesQuantity: 0, contentRating: '', image: null
+  };
+  genres = ['Romance', 'Terror', 'Fantasia', 'Drama', 'Mistério', 'Suspense'];
+  contentRatings = ['Livre', '10', '12', '14', '16', '18'];
+  selectedGenre: string = "Terror";
+  selectedContentRating: string = "10";
 
-  constructor() { }
+  constructor(private bookService: BookService) { }
 
   ngAfterViewInit(): void {
     initFlowbite();
@@ -24,6 +32,17 @@ export class EditarLivroComponent implements AfterViewInit {
 
   selecionarClassificacao(classificacao: string) {
     this.selectedContentRating = classificacao;
+  }
+
+  enviarFormulario() {
+    this.bookService.editarLivro(this.book).subscribe({
+      next: (value) => {
+        this.book = {
+          title: '', author: '', publishedYear: 0, genre: '',
+          pagesQuantity: 0, contentRating: '', image: null
+        };
+      }
+    })
   }
 
 }
