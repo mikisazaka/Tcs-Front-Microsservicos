@@ -27,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'adicionarLivro',
     loadChildren: () => import('./adicionar-livro/adicionar-livro.module').then(m => m.AdicionarLivroModule)
+  },
+  {
+    path: 'editarLivro',
+    loadChildren: () => import('./editar-livro/editar-livro.module').then(m => m.EditarLivroModule)
   }
 ];
 
