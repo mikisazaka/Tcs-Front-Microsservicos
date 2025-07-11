@@ -1,0 +1,25 @@
+#editar {
+    box-shadow: 2px 2px 6px #0000;
+}
+
+.box {
+    height: calc(100vh - 72px);
+}
+
+#edicao_btn {
+    box-shadow: 2px 2px 6px #0000;
+    transition: all 0.3s ease;
+}
+
+#edicao_btn:active {
+    background-color: #753e2e;
+}
+
+input:focus {
+    border: 1px solid #753e2e;
+}
+
+label, input, button {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}

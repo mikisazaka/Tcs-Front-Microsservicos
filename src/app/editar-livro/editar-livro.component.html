@@ -1,0 +1,221 @@
+<div class="flex items-center justify-center box">
+    <div id="editar"
+        class="shadow-xl/30 place-content-center w-full max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+        style="background-color: #ce7e5d;">
+        <form class="space-y-6" action="#">
+            <h5 class="text-3xl font-medium text-center text-gray-900 dark:text-white">Editar livro</h5>
+            <div>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
+                <input type="text" name="title" id="title"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black 
+                    focus:border-black block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
+                    style="background-color: #ffff" required />
+            </div>
+            <div>
+                <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Autor</label>
+                <input type="text" name="author" id="author"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
+                    style="background-color: #ffff" required />
+            </div>
+            <div class="grid grid-cols-2" style="gap: 15px;">
+                <div>
+                    <label for="publishedYear" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ano
+                        de publicação</label>
+                    <input type="number" name="publishedYear" id="publishedYear"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
+                        style="background-color: #ffff" required />
+                </div>
+
+                <div>
+                    <label for="genre"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gênero</label>
+                    <button id="dropdownGenre" data-dropdown-toggle="genreRadio"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
+                        type="button" style="background-color: #ffff">
+                        <div class="items-center flex justify-between">
+                            <span>{{selectedGenre}}</span>
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </div>
+                    </button>
+
+                    <div id="genreRadio"
+                        class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
+                        <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownGenre">
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-romance" type="radio" value="" name="genre"
+                                        (change)="selectedGenre='Romance'" checked
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-romance"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Romance</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input checked id="radio-terror" type="radio" value="" name="genre"
+                                        (change)="selectedGenre='Terror'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-terror"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Terror</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-fantasy" type="radio" value="" name="genre"
+                                        (change)="selectedGenre='Fantasia'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-fantasy"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fantasia</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-drama" type="radio" value="" name="genre"
+                                        (change)="selectedGenre='Drama'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-drama"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Drama</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-mistery" type="radio" value="" name="genre"
+                                        (change)="selectedGenre='Mistério'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-mistery"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mistério</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-suspense" type="radio" value="" name="genre"
+                                        (change)="selectedGenre='Suspense'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-suspense"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Suspense</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2" style="gap: 15px;">
+                <div>
+                    <label for="pagesQuantity"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade de
+                        páginas</label>
+                    <input type="number" name="pagesQuantity" id="pagesQuantity"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
+                        style="background-color: #ffff" required />
+                </div>
+
+                <div>
+                    <label for="contentRating"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Classificação
+                        indicativa</label>
+                    <button id="dropdownContentRating" data-dropdown-toggle="contentRatingRadio"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black" type="button"
+                        style="background-color: #ffff">
+                        <div class="items-center flex justify-between">
+                            <span>{{selectedContentRating}}</span>
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </div>
+                    </button>
+
+                    <div id="contentRatingRadio"
+                        class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
+                        <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownContentRating">
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-livre" type="radio" value="" name="contentRating"
+                                        (change)="selectedContentRating='Livre'" checked
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-livre"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Livre</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input checked id="radio-10" type="radio" value="" name="contentRating"
+                                        (change)="selectedContentRating='10'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-10"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">10</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-12" type="radio" value="" name="contentRating"
+                                        (change)="selectedContentRating='12'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-12"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">12</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-14" type="radio" value="" name="contentRating"
+                                        (change)="selectedContentRating='14'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-14"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">14</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-16" type="radio" value="" name="contentRating"
+                                        (change)="selectedContentRating='16'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-16"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">16</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="radio-18" type="radio" value="" name="contentRating"
+                                        (change)="selectedContentRating='18'"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="radio-18"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">18</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="edicao_btn"
+                class="w-full text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium 
+                rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                style="background-color: #a2543d">Atualizar</button>
+        </form>
+    </div>
+</div>

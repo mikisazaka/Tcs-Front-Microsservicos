@@ -31,6 +31,14 @@ export const routes: Routes = [
   { 
     path: 'livro', 
     loadChildren: () => import('./livro/livro.module').then(m => m.LivroModule) 
+  },
+  {
+    path: 'adicionarLivro',
+    loadChildren: () => import('./adicionar-livro/adicionar-livro.module').then(m => m.AdicionarLivroModule)
+  },
+  {
+    path: 'editarLivro',
+    loadChildren: () => import('./editar-livro/editar-livro.module').then(m => m.EditarLivroModule)
   }
 ];
 
@@ -38,4 +46,5 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
