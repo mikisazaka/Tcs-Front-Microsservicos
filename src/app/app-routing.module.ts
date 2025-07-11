@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {
-    path: '', redirectTo: '/telaInicial', pathMatch: 'full'
-  },
+  { path: '', redirectTo: '/telaInicial', pathMatch: 'full' },
   {
     path: 'homepage',
     loadChildren: () =>
@@ -13,7 +11,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginModule)
+      import('./user/login/login.module').then((m) => m.LoginModule)
   },
   {
     path: 'telaInicial',
@@ -21,8 +19,21 @@ export const routes: Routes = [
       import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule)
   },
   {
-    path: 'cadastro',
-    loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule)
+    path: 'selectBooks',
+    loadChildren: () =>
+      import('./select-books/select-books.module').then((m) => m.SelectBooksModule)
+  },
+  { 
+    path: 'cadastro', 
+    loadChildren: () => import('./user/cadastro/cadastro.module').then(m => m.CadastroModule) 
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
+  },
+  { 
+    path: 'livro', 
+    loadChildren: () => import('./livro/livro.module').then(m => m.LivroModule) 
   },
   {
     path: 'adicionarLivro',
@@ -38,4 +49,5 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

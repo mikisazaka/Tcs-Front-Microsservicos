@@ -1,0 +1,26 @@
+#tabela-usuarios {
+}
+
+#header-tabela {
+    background-color: #ce7e5d;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#tabela-usuarios {
+    border: 1px solid #000;
+}
+
+th {
+    width: 10rem;
+    justify-content: center;
+    height: 3.5rem;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+td {
+    text-align: center;
+    padding: .5rem;
+}

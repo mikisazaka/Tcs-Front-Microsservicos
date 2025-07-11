@@ -3,8 +3,8 @@ export interface Book {
     title: string;
     author: string;
     publishedYear: number;
-    genre: string;
-    pagesQuantity: number;
+    gender: string;
+    pagesQuantity: string;
     contentRating: string;
-    image: File | null;
+    image?: File;
 }

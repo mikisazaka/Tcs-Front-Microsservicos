@@ -24,10 +24,8 @@
         class="font-medium flex flex-row space-x-8 rtl:space-x-reverse justify-center items-center"
       >
         <li>
-          <button mat-raised-button color="accent">
-            <a (click)="goToLivros()" style="cursor: pointer">
+          <button mat-raised-button color="accent" (click)="goToBooks()" style="cursor: pointer">
               Seleção de Livros
-            </a>
           </button>
         </li>
         <li>
@@ -35,8 +33,9 @@
             *ngIf="authService.isAdmin()"
             mat-raised-button
             color="accent"
+            (click)="goToAdminPage()"
           >
-            <a (click)="goToAdminPage()"> Painel do Administrador</a>
+          Painel do Administrador
           </button>
         </li>
         <li>
@@ -44,10 +43,9 @@
             *ngIf="authService.isLoggedIn()"
             mat-raised-button
             color="accent"
+            (click)="logout()"
           >
-            <a (click)="logout()">
               Logout
-            </a>
           </button>
         </li>
         <li>
@@ -66,8 +64,6 @@
             id="botao-login"
             type="button"
             (click)="goToLogin()"
-            mat-raised-button
-            color="accent"
           >
             Login
           </button>

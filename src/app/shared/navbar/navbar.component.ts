@@ -8,17 +8,13 @@ import { AuthService } from 'app/auth/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-  
+
 export class NavbarComponent {
 
   constructor(public router: Router, public authService: AuthService) { }
 
   goToHome() {
     this.router.navigate(['/telaInicial']);
-  }
-
-  goToLivros() {
-    this.router.navigate(['/']);
   }
 
   logout(): void {
@@ -32,5 +28,9 @@ export class NavbarComponent {
 
   goToLogin() {
     this.router.navigate(['/login'])
+  }
+
+  goToBooks() {
+    this.router.navigate(['/selectBooks'])
   }
 }

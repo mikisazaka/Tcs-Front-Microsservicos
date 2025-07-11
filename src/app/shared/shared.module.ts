@@ -10,12 +10,12 @@ import { FullScreenMessageComponent } from './full-screen-message/full-screen-me
   declarations: [
     NavbarComponent, 
     LivrosPopularesComponent,
+    FullScreenMessageComponent
   ],
   imports: [
     CommonModule, 
     MatButtonModule, 
-    MatSidenavModule,
-    FullScreenMessageComponent
+    MatSidenavModule
   ],
   exports: [
     NavbarComponent, 
