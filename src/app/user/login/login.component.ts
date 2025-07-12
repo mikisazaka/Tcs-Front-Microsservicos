@@ -1,7 +1,7 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../auth/auth.service'; 
+import { AuthService } from '../../auth/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,10 +30,17 @@ export class LoginComponent implements OnInit{
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops! Login inválido',
+        text: 'Por favor, preencha os campos corretamente.',
+        confirmButtonColor: '#a2543d', // Cor do seu tema para o botão
+        confirmButtonText: 'OK, ENTENDI'
+      });
       return;
     }
 
-    this.loginInvalido = false; 
+    this.loginInvalido = false;
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {

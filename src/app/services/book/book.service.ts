@@ -6,9 +6,10 @@ import { Book } from 'app/models/book.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class BookService {
 
-  private readonly API_URL = 'http://localhost:8887/book'
+  private API_URL = 'http://localhost:8887/book'
 
   constructor(private http: HttpClient) { }
 
