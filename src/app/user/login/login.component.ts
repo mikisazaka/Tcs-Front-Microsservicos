@@ -30,10 +30,17 @@ export class LoginComponent implements OnInit{
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops! Login inválido',
+        text: 'Por favor, preencha os campos corretamente.',
+        confirmButtonColor: '#a2543d', // Cor do seu tema para o botão
+        confirmButtonText: 'OK, ENTENDI'
+      });
       return;
     }
 
-    this.loginInvalido = false; 
+    this.loginInvalido = false;
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {

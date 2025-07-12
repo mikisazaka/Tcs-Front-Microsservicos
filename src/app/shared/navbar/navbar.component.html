@@ -61,9 +61,9 @@
           </button> -->
           <button
           *ngIf="!authService.isLoggedIn()"
-            id="botao-login"
             type="button"
             (click)="goToLogin()"
+            mat-raised-button color="accent"
           >
             Login
           </button>

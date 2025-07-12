@@ -10,7 +10,6 @@ import Swal from 'sweetalert2';
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css',
 })
-
 export class CadastroComponent implements OnInit {
   cadastroForm!: FormGroup;
   public hidePassword = true;
@@ -27,13 +26,20 @@ export class CadastroComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['USER']
+      role: ['USER'],
     });
   }
 
   onSubmit(): void {
     if (this.cadastroForm.invalid) {
-      return; 
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops! Cadastro inválido',
+        text: 'Por favor, preencha os campos corretamente.',
+        confirmButtonColor: '#a2543d', // Cor do seu tema para o botão
+        confirmButtonText: 'OK, ENTENDI',
+      });
+      return;
     }
 
     this.authService.register(this.cadastroForm.value).subscribe({

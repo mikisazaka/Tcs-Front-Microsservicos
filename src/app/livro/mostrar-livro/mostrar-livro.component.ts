@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Book } from 'app/models/book.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mostrar-livro',
@@ -6,24 +10,24 @@ import { Component } from '@angular/core';
   templateUrl: './mostrar-livro.component.html',
   styleUrl: './mostrar-livro.component.css'
 })
-export class MostrarLivroComponent {
+export class MostrarLivroComponent implements OnInit {
 
-  public isLiked: boolean = false;
-  public color: string = "#fff";
-  public added: boolean = false;
+  livro$?: Observable<Book>
+  API_URL = 'http://localhost:8887/book'
 
-  like() {
-    if(!this.isLiked) {
-      this.color = "red"
-    } else {
-      this.color = "#fff"
+  constructor (
+    private route: ActivatedRoute,
+    private http: HttpClient
+  ) {}
+
+  ngOnInit(): void {
+    // 1. Pega o ID da URL
+    const id = this.route.snapshot.paramMap.get('id');
+
+    // 2. Faz a requisição GET para o seu microserviço Spring Boot
+    if (id) {
+      this.livro$ = this.http.get<Book>(`${this.API_URL}/${id}`);
     }
-
-    this.isLiked = !this.isLiked
-  }
-
-  add() {
-    this.added = !this.added;
   }
 
 }

@@ -34,6 +34,15 @@ export class EditarLivroComponent implements AfterViewInit {
     this.selectedContentRating = classificacao;
   }
 
-
+  enviarFormulario() {
+    this.bookService.editarLivro(this.book).subscribe({
+      next: (value) => {
+        this.book = {
+          title: '', author: '', publishedYear: 0, genre: '',
+          pagesQuantity: 0, contentRating: '', image: null
+        };
+      }
+    })
+  }
 
 }

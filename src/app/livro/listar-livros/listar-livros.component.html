@@ -1,0 +1,13 @@
+<div class="book-gallery flex flex-wrap gap-6 justify-center" style="color: #000; padding-top: 10rem; background-color: #fde4d4;">
+  <div *ngFor="let livro of allBooks" class="book-card">
+    <div class="book-image-container">
+      <img [src]="apiBaseUrl + '/images/' + livro.imagePath" [alt]="'Capa do livro ' + livro.title" style="height: 30rem; width: 30rem; object-fit: cover;">
+    </div>
+    <div class="book-info">
+      <button>{{ livro.title }}</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="allBooks.length === 0" class="empty-message" style="color: #000;">
+  <p>Nenhum livro encontrado.</p>
+</div>

@@ -1,36 +1,16 @@
-<div class="flex justify-center items-center gap-5" style="height: calc(100vh - 72px);">
+<div *ngIf="livro$ | async as livro;" class="flex justify-center items-center gap-5" style="height: calc(100vh - 72px);">
     <div class="imagem-livro">
-        <img src="../../../assets/images/harry-potter.jpg" alt="" style="height: 75vh; border-radius: 10px;">
+        <img src="../../../assets/images/harry-potter.jpg" alt="" style="height: 70vh; border-radius: 10px;">
     </div>
     <div class="grid gap-5 infos-livro">
-        <p><span class="font-bold text-2xl">Título: </span> </p>
-        <p><span class="font-bold text-2xl">Autor: </span> </p>
-        <p><span class="font-bold text-2xl">Ano de publicação: </span> </p>
-        <p><span class="font-bold text-2xl">Número de páginas: </span> </p>
-        <p><span class="font-bold text-2xl">Gênero: </span> </p>
+        <p class="text-xl"><span class="font-bold text-2xl">Título: </span>{{livro.title}}</p>
+        <p class="text-xl"><span class="font-bold text-2xl">Autor: </span>{{livro.author}}</p>
+        <p class="text-xl"><span class="font-bold text-2xl">Ano de publicação: </span>{{livro.publishedYear}}</p>
+        <p class="text-xl"><span class="font-bold text-2xl">Número de páginas: </span>{{livro.pagesQuantity}}</p>
+        <p class="text-xl"><span class="font-bold text-2xl">Gênero: </span>{{livro.gender}}</p>
     </div>
-    <div class="container-interacao grid">
-        <div class="like-button" style="border-radius: 50%; border: 1px solid #000; position: absolute; background-color: #fff; top: 11rem; right: 53.5rem;">
-            <div>
-                <svg (click)="like()" [attr.fill]="color" style="cursor: pointer;" class="w-15 h-15 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                </svg>
-            </div>
-        </div>
-        <div class="list-button" style="border-radius: 50%; border: 1px solid #000; position: absolute; background-color: #fff; top: 15rem; right: 53.5rem;">
-            <div>
-                <button *ngIf="!added" (click)="add()" style="cursor: pointer;">
-                    <svg class="w-15 h-15 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
-                    </svg>                      
-                </button>
-                <button *ngIf="added" (click)="add()" style="cursor: pointer;">
-                    <svg class="w-15 h-15 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
-                      </svg>                      
-                </button>
-            </div>
-        </div>
-    </div>
-      
-</div>  
+</div>
+
+<div *ngIf="livro$">
+  <p>NOT FOUND!</p>
+</div>

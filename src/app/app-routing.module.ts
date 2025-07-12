@@ -31,9 +31,9 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
   },
-  { 
-    path: 'livro', 
-    loadChildren: () => import('./livro/livro.module').then(m => m.LivroModule) 
+  {
+    path: 'livro/:id',
+    loadChildren: () => import('./livro/livro.module').then(m => m.LivroModule)
   },
   {
     path: 'adicionarLivro',
