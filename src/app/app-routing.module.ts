@@ -19,17 +19,17 @@ export const routes: Routes = [
       import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule)
   },
   {
-    path: 'cadastro',
-    loadChildren: () => import('./user/cadastro/cadastro.module').then(m => m.CadastroModule)
-  },
-  {
-    path: 'select-books',
+    path: 'selectBooks',
     loadChildren: () =>
       import('./select-books/select-books.module').then((m) => m.SelectBooksModule)
   },
+  { 
+    path: 'cadastro', 
+    loadChildren: () => import('./user/cadastro/cadastro.module').then(m => m.CadastroModule) 
+  },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
   },
   {
     path: 'livro/:id',

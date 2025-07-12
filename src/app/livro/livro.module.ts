@@ -6,7 +6,6 @@ import { SharedModule } from 'app/shared/shared.module';
 import { MostrarLivroComponent } from './mostrar-livro/mostrar-livro.component';
 import { ListarLivrosComponent } from './listar-livros/listar-livros.component';
 
-
 @NgModule({
   declarations: [
     MostrarLivroComponent,

@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
   templateUrl: './mostrar-livro.component.html',
   styleUrl: './mostrar-livro.component.css'
 })
-
 export class MostrarLivroComponent implements OnInit {
 
   livro$?: Observable<Book>
