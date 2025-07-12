@@ -15,8 +15,10 @@ export class AdicionarLivroComponent implements AfterViewInit {
     id: 0, title: '', author: '', publishedYear: 0, gender: '',
     pagesQuantity: '', contentRating: '', imagePath: null
   };
-  selectedGenre: string = "";
-  selectedContentRating: string = "";
+  genres = ['Romance', 'Terror', 'Fantasia', 'Drama', 'Mistério', 'Suspense'];
+  contentRatings = ['Livre', '10', '12', '14', '16', '18'];
+  selectedGenre: string = "Terror";
+  selectedContentRating: string = "10";
 
   constructor(private bookService: BookService) { }
 

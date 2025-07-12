@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {
-    path: '', redirectTo: '/telaInicial', pathMatch: 'full'
-  },
+  { path: '', redirectTo: '/telaInicial', pathMatch: 'full' },
   {
     path: 'homepage',
     loadChildren: () =>
@@ -23,6 +21,11 @@ export const routes: Routes = [
   {
     path: 'cadastro',
     loadChildren: () => import('./user/cadastro/cadastro.module').then(m => m.CadastroModule)
+  },
+  {
+    path: 'select-books',
+    loadChildren: () =>
+      import('./select-books/select-books.module').then((m) => m.SelectBooksModule)
   },
   {
     path: 'admin',
