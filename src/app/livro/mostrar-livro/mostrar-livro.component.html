@@ -1,16 +1,99 @@
-<div *ngIf="livro$ | async as livro;" class="flex justify-center items-center gap-5" style="height: calc(100vh - 72px);">
+<div
+  *ngIf="livro$ | async as livro"
+  class="flex justify-center items-center gap-5"
+  style="height: calc(100vh - 72px);"
+>
+  <div id="livro" style="border: 1px solid #000; border-radius: 10px; padding: 1rem;" class="flex gap-5">
     <div class="imagem-livro">
-        <img src="../../../assets/images/harry-potter.jpg" alt="" style="height: 70vh; border-radius: 10px;">
+    <img
+      [src]="apiBaseUrl + '/images/' + livro.imagePath"
+      [alt]="'Capa do livro ' + livro.title"
+      style="height: 70vh; border-radius: 10px"
+    />
+  </div>
+  <div class="grid gap-3 infos-livro">
+    <p class="text-xl">
+      <span class="font-bold text-2xl" style="color: #000">Título: </span
+      >{{ livro.title }}
+    </p>
+    <p class="text-xl">
+      <span class="font-bold text-2xl" style="color: #000">Autor: </span
+      >{{ livro.author }}
+    </p>
+    <p class="text-xl">
+      <span class="font-bold text-2xl" style="color: #000"
+        >Ano de publicação: </span
+      >{{ livro.publishedYear }}
+    </p>
+    <p class="text-xl">
+      <span class="font-bold text-2xl" style="color: #000"
+        >Número de páginas: </span
+      >{{ livro.pagesQuantity }}
+    </p>
+    <p class="text-xl">
+      <span class="font-bold text-2xl" style="color: #000">Gênero: </span
+      >{{ livro.gender }}
+    </p>
+    <div [ngSwitch]="livro.contentRating">
+      <p *ngSwitchCase="'LIVRE'" class="text-xl font-bold livre-style">
+        <span class="font-bold text-2xl" style="color: #000"
+          >Classificação indicativa:
+        </span>
+        Livre para todos os públicos
+      </p>
+
+      <p *ngSwitchCase="'DEZ'" class="text-xl font-bold dez-anos-style">
+        <span class="font-bold text-2xl" style="color: #000"
+          >Classificação indicativa:
+        </span>
+        Não recomendado para menores de 10 anos
+      </p>
+
+      <p *ngSwitchCase="'DOZE'" class="text-xl font-bold doze-anos-style">
+        <span class="font-bold text-2xl" style="color: #000"
+          >Classificação indicativa:
+        </span>
+        Não recomendado para menores de 12 anos
+      </p>
+
+      <p
+        *ngSwitchCase="'QUATORZE'"
+        class="text-xl font-bold quatorze-anos-style"
+      >
+        <span class="font-bold text-2xl" style="color: #000"
+          >Classificação indicativa:
+        </span>
+        Não recomendado para menores de 14 anos
+      </p>
+
+      <p
+        *ngSwitchCase="'DEZESSEIS'"
+        class="text-xl font-bold dezesseis-anos-style"
+      >
+        <span class="font-bold text-2xl" style="color: #000"
+          >Classificação indicativa:
+        </span>
+        Não recomendado para menores de 16 anos
+      </p>
+
+      <p *ngSwitchCase="'DEZOITO'" class="text-xl font-bold dezoito-anos-style">
+        <span class="font-bold text-2xl" style="color: #000"
+          >Classificação indicativa:
+        </span>
+        Conteúdo restrito para maiores de 18 anos
+      </p>
+
+      <p *ngSwitchDefault class="text-xl font-bold">
+        <span class="font-bold text-2xl" style="color: #000"
+          >Classificação indicativa:
+        </span>
+        Não informada
+      </p>
     </div>
-    <div class="grid gap-5 infos-livro">
-        <p class="text-xl"><span class="font-bold text-2xl">Título: </span>{{livro.title}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Autor: </span>{{livro.author}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Ano de publicação: </span>{{livro.publishedYear}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Número de páginas: </span>{{livro.pagesQuantity}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Gênero: </span>{{livro.gender}}</p>
-    </div>
+  </div>
+  </div>
 </div>
 
-<div *ngIf="livro$">
+<div *ngIf="!livro$">
   <p>NOT FOUND!</p>
 </div>

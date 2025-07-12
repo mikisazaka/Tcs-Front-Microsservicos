@@ -15,6 +15,7 @@ export class MostrarLivroComponent implements OnInit {
 
   livro$?: Observable<Book>
   API_URL = 'http://localhost:8887/book'
+  public readonly apiBaseUrl = 'http://localhost:8887'
 
   constructor (
     private route: ActivatedRoute,

@@ -6,15 +6,15 @@
             <h5 class="text-3xl font-medium text-center text-gray-900 dark:text-white">Adicionar novo livro</h5>
             <div>
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
-                <input type="text" name="title" id="title" ([ngModel])="book.title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black 
+                <input type="text" name="title" id="title" [(ngModel)]="book.title"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black
                     focus:border-black block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
                     style="background-color: #ffff" required />
             </div>
             <div>
                 <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Autor</label>
-                <input type="text" name="author" id="author" ([ngModel])="book.author"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                <input type="text" name="author" id="author" [(ngModel)]="book.author"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
                     style="background-color: #ffff" required />
             </div>
@@ -22,8 +22,8 @@
                 <div>
                     <label for="publishedYear" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ano
                         de publicação</label>
-                    <input type="number" name="publishedYear" id="publishedYear" ([ngModel])="book.publishedYear"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                    <input type="number" name="publishedYear" id="publishedYear" [(ngModel)]="book.publishedYear"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
                         style="background-color: #ffff" required />
                 </div>
@@ -32,7 +32,7 @@
                     <label for="genre"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gênero</label>
                     <button id="dropdownGenre" data-dropdown-toggle="genreRadio"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
                         type="button" style="background-color: #ffff">
                         <div class="items-center flex justify-between">
@@ -45,7 +45,7 @@
                         </div>
                     </button>
 
-                    <div id="genreRadio" 
+                    <div id="genreRadio"
                         class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownGenre" *ngFor="let genre of genres">
@@ -53,7 +53,7 @@
                                 <div class="flex items-center">
                                     <input [id]="genre" type="radio" [value]="genre" name="genre"
                                         [(ngModel)]="selectedGenre"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
                                         dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="{{genre}}"
                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{genre}}</label>
@@ -69,8 +69,8 @@
                     <label for="pagesQuantity"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade de
                         páginas</label>
-                    <input type="number" name="pagesQuantity" id="pagesQuantity" ([ngModel])="book.pagesQuantity"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                    <input type="number" name="pagesQuantity" id="pagesQuantity" [(ngModel)]="book.pagesQuantity"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black"
                         style="background-color: #ffff" required />
                 </div>
@@ -80,7 +80,7 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Classificação
                         indicativa</label>
                     <button id="dropdownContentRating" data-dropdown-toggle="contentRatingRadio"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black" type="button"
                         style="background-color: #ffff">
                         <div class="items-center flex justify-between">
@@ -93,7 +93,7 @@
                         </div>
                     </button>
 
-                    <div id="contentRatingRadio" 
+                    <div id="contentRatingRadio"
                         class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownContentRating" *ngFor="let contentRating of contentRatings">
@@ -101,7 +101,7 @@
                                 <div class="flex items-center">
                                     <input [id]="contentRating" type="radio" [value]="contentRating" name="contentRating"
                                         [(ngModel)]="selectedContentRating"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
                                         dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="{{contentRating}}"
                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{contentRating}}</label>
@@ -113,7 +113,7 @@
             </div>
 
             <button type="submit" id="cadastro_btn"
-                class="w-full text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium 
+                class="w-full text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
                 rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 style="background-color: #a2543d">Cadastrar</button>
         </form>

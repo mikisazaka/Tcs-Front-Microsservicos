@@ -1,0 +1,28 @@
+.book-card {
+  display: grid; /* Transforma o card em um container grid */
+  /* Cria uma única célula no grid. A imagem e o texto ocuparão este mesmo espaço. */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  isolation: isolate; /* Garante que o z-index funcione corretamente se necessário */
+}
+
+.book-image-container,
+.book-info {
+  /* Diz para ambos os elementos ocuparem a mesma célula do grid (da primeira à última linha/coluna) */
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.book-info {
+  /* Usa flexbox para centralizar o botão perfeitamente sobre a imagem */
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 3rem;
+  z-index: 10; /* Garante que as informações fiquem sobre a imagem */
+  pointer-events: none; /* Permite cliques "através" da div de info, se necessário */
+}
+
+.book-info #btn-titulo-livro {
+    pointer-events: auto;
+}
