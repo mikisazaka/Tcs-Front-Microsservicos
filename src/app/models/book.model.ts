@@ -6,5 +6,5 @@ export interface Book {
     gender: string;
     pagesQuantity: string;
     contentRating: string;
-    image?: File;
+    imagePath: string;
 }
