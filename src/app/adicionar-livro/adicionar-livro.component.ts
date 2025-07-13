@@ -29,7 +29,11 @@ export class AdicionarLivroComponent implements AfterViewInit {
   selectedGenre: string = "Terror";
   selectedContentRating: string = "10";
 
-  constructor(public router: Router, private bookService: BookService) { }
+  constructor(
+    public router: Router,
+    private bookService: BookService,
+    public authService: AuthService
+  ) { }
 
   ngAfterViewInit(): void {
     initFlowbite();
