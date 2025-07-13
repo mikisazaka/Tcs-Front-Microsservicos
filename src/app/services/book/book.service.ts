@@ -15,7 +15,7 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   registrarLivro(title: string, author: string, publishedYear: number,
-    pagesQuantity: string, gender: string, contentRating: string, image: File
+    pagesQuantity: number, gender: string, contentRating: string, image: File
   ): Observable<Book> {
     const formData = new FormData();
 
