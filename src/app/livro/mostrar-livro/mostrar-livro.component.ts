@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from 'app/models/book.model';
-import { Observable } from 'rxjs';
+import { Book } from 'app/models/bookDetail.model';
+import { catchError, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-mostrar-livro',
@@ -10,10 +10,12 @@ import { Observable } from 'rxjs';
   templateUrl: './mostrar-livro.component.html',
   styleUrl: './mostrar-livro.component.css'
 })
+
 export class MostrarLivroComponent implements OnInit {
 
-  livro$?: Observable<Book>
+  livro$?: Observable<Book | null>
   API_URL = 'http://localhost:8887/book'
+  public readonly apiBaseUrl = 'http://localhost:8887'
 
   constructor (
     private route: ActivatedRoute,
@@ -24,9 +26,13 @@ export class MostrarLivroComponent implements OnInit {
     // 1. Pega o ID da URL
     const id = this.route.snapshot.paramMap.get('id');
 
-    // 2. Faz a requisição GET para o seu microserviço Spring Boot
     if (id) {
-      this.livro$ = this.http.get<Book>(`${this.API_URL}/${id}`);
+      this.livro$ = this.http.get<Book>(`${this.API_URL}/${id}`).pipe(
+        catchError(error => {
+          console.error('Livro não encontrado: ', error);
+          return of(null);
+        })
+      );
     }
   }
 

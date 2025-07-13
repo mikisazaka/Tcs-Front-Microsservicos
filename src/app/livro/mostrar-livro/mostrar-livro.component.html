@@ -1,16 +1,75 @@
-<div *ngIf="livro$ | async as livro;" class="flex justify-center items-center gap-5" style="height: calc(100vh - 72px);">
+<div
+  *ngIf="livro$ | async as livro; else livroNotFound"
+  class="flex justify-center items-center"
+  style="height: calc(100vh - 72px); background-color: #FDE4D4;"
+>
+  <div
+    id="livro"
+    style="border-radius: 10px; padding: 1rem; background-color: #fff;"
+    class="flex gap-5"
+  >
     <div class="imagem-livro">
-        <img src="../../../assets/images/harry-potter.jpg" alt="" style="height: 70vh; border-radius: 10px;">
+      <img
+        [src]="apiBaseUrl + '/images/' + livro.imagePath"
+        [alt]="'Capa do livro ' + livro.title"
+        style="height: 70vh; border-radius: 10px"
+      />
     </div>
-    <div class="grid gap-5 infos-livro">
-        <p class="text-xl"><span class="font-bold text-2xl">Título: </span>{{livro.title}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Autor: </span>{{livro.author}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Ano de publicação: </span>{{livro.publishedYear}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Número de páginas: </span>{{livro.pagesQuantity}}</p>
-        <p class="text-xl"><span class="font-bold text-2xl">Gênero: </span>{{livro.gender}}</p>
+    <div class="flex flex-col infos-livro gap-5" style="width: 20rem">
+      <div>
+        <p style="color: #000; font-weight: bold; font-size: 40px; overflow-wrap: break-word;">
+          {{ livro.title }}
+        </p>
+
+        <p style="color: #000; font-size: 24px; font-weight: 500">
+          {{ livro.author }}
+        </p>
+      </div>
+
+      <div>
+        <div class="grid items-center" style="color: #000; font-size: 18px">
+          <span> Ano: {{ livro.publishedYear }} </span>
+          <span> Páginas: {{ livro.pagesQuantity }} pág. </span>
+          <span> Gênero: {{ livro.gender }} </span>
+        </div>
+      </div>
+
+      <div [ngSwitch]="livro.contentRating">
+        <div *ngSwitchCase="'LIVRE'">
+          <span class="r-livre r">L</span>
+        </div>
+
+        <div *ngSwitchCase="'DEZ'">
+          <span class="r-10 r">10+</span>
+        </div>
+
+        <div *ngSwitchCase="'DOZE'">
+          <span class="r-12 r">12+</span>
+        </div>
+
+        <div *ngSwitchCase="'QUATORZE'">
+          <span class="r-14 r">14+</span>
+        </div>
+
+        <div *ngSwitchCase="'DEZESSEIS'">
+          <span class="r-16 r">16+</span>
+        </div>
+
+        <div *ngSwitchCase="'DEZOITO'">
+          <span class="r-18 r">18+</span>
+        </div>
+
+        <p *ngSwitchDefault class="text-xl font-bold">
+          <span class="font-bold text-2xl" style="color: #000"
+            >Classificação indicativa:
+          </span>
+          Não informada
+        </p>
+      </div>
     </div>
+  </div>
 </div>
 
-<div *ngIf="livro$">
-  <p>NOT FOUND!</p>
-</div>
+<ng-template #livroNotFound>
+  <app-not-found></app-not-found>
+</ng-template>

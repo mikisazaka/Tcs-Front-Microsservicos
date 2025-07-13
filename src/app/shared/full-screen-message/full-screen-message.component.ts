@@ -11,7 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class FullScreenMessageComponent {
 
-  constructor(public location: Location, public router: Router){}
+  constructor(
+    public location: Location,
+    public router: Router
+  ){}
 
   goBack() {
     this.location.back()

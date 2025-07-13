@@ -1,11 +1,10 @@
 export interface Book {
-    id?: number;
+    id: number;
     title: string;
     author: string;
     publishedYear: number;
     gender: string;
-    pagesQuantity: number;
+    pagesQuantity: string;
     contentRating: string;
-    image?: File;
-    imagePath?: string;
+    imagePath: string | null;
 }

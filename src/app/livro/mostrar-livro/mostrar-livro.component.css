@@ -1,0 +1,43 @@
+body {
+  background-color: #F7F1ED;
+}
+
+.r-18 {
+  background-color: #000;
+}
+
+.r-16 {
+  background-color: red;
+}
+
+.r-14 {
+  background-color: orange;
+}
+
+.r-12 {
+  background-color: rgb(191, 191, 5);
+}
+
+.r-10 {
+  background-color: rgb(6, 161, 212);
+}
+
+.r-livre {
+  background-color: lightgreen;
+}
+
+.r {
+  font-weight: bold;
+  font-size: 24px;
+  height: 1rem;
+  border-radius: 5px;
+  color: #fff;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: .75rem;
+  padding-right: .75rem;
+}
+
+#livro {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}

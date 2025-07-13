@@ -5,25 +5,28 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LivrosPopularesComponent } from './livros-populares/livros-populares.component';
 import { FullScreenMessageComponent } from './full-screen-message/full-screen-message.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    NavbarComponent, 
+    NavbarComponent,
     LivrosPopularesComponent,
-    FullScreenMessageComponent
+    FullScreenMessageComponent,
+    NotFoundComponent
   ],
   imports: [
-    CommonModule, 
-    MatButtonModule, 
+    CommonModule,
+    MatButtonModule,
     MatSidenavModule
   ],
   exports: [
-    NavbarComponent, 
-    LivrosPopularesComponent, 
-    CommonModule, 
-    MatButtonModule, 
+    NavbarComponent,
+    LivrosPopularesComponent,
+    CommonModule,
+    MatButtonModule,
     MatSidenavModule,
-    FullScreenMessageComponent
-  ], 
+    FullScreenMessageComponent,
+    NotFoundComponent
+  ],
 })
 export class SharedModule {}

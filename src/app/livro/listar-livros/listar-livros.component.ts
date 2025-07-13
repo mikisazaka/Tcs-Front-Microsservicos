@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'app/models/book.model';
-import { BookService } from 'app/services/book/book.service';
+import { Router } from '@angular/router';
+import { Book } from 'app/models/bookDetail.model';
+import { BookDetail } from 'app/services/book-detail.service';
 
 @Component({
   selector: 'app-listar-livros',
@@ -14,11 +15,12 @@ export class ListarLivrosComponent implements OnInit {
   public readonly apiBaseUrl = 'http://localhost:8887'
 
   constructor(
-    private bookService: BookService
+    private bookDetail: BookDetail,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
-    this.bookService.getLivros().subscribe({
+    this.bookDetail.getLivros().subscribe({
       next: (livros) => {
         this.allBooks = livros;
       },
@@ -26,6 +28,10 @@ export class ListarLivrosComponent implements OnInit {
         console.error('Falha ao carregar os livros:', err);
       }
     });
+  }
+
+  goToLivro(id: number) {
+    this.router.navigate(['/livro/' + `${id}`])
   }
 
 }
