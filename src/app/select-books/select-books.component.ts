@@ -32,8 +32,12 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
     DEZOITO: 'bg-black text-white'
   };
 
+  constructor(
+    private bookService: BookService,
+    public router: Router,
+    public authService: AuthService
+  ) { }
 
-  constructor(private bookService: BookService, public router: Router) { }
 
   ngAfterViewInit(): void {
     initFlowbite();
