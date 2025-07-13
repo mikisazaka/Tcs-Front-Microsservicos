@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { BookService } from 'app/services/book/book.service';
 import { initFlowbite } from 'flowbite';
