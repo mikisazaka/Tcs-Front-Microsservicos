@@ -17,8 +17,8 @@ export class NavbarComponent {
     this.router.navigate(['/telaInicial']);
   }
 
-  goToLivros() {
-    this.router.navigate(['/select-books']);
+  goToBooks() {
+    this.router.navigate(['/selectBooks'])
   }
 
   logout(): void {
