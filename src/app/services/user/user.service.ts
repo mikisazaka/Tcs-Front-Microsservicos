@@ -28,4 +28,8 @@ export class UserService {
 
     return this.http.get<Page<User>>(this.API_URL, { params });
   }
+
+  removerUsuario(id: number): Observable<User> {
+      return this.http.delete<User>(`${this.API_URL}/${id}`);
+  }
 }
