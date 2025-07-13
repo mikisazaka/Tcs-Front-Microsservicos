@@ -53,7 +53,7 @@ export class CadastroComponent implements OnInit {
           confirmButtonColor: '#a2543d',
           confirmButtonText: 'IR PARA O LOGIN',
         }).then(() => {
-          this.router.navigate(['/login']); 
+          this.router.navigate(['/login']);
         });
       },
       error: (err) => {
@@ -70,6 +70,6 @@ export class CadastroComponent implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 }

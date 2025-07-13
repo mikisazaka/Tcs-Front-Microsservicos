@@ -17,6 +17,10 @@ export class NavbarComponent {
     this.router.navigate(['/telaInicial']);
   }
 
+  goToLivros() {
+    this.router.navigate(['/select-books']);
+  }
+
   logout(): void {
     localStorage.removeItem('authToken');
     window.location.href = '/login';
@@ -28,9 +32,5 @@ export class NavbarComponent {
 
   goToLogin() {
     this.router.navigate(['/login'])
-  }
-
-  goToBooks() {
-    this.router.navigate(['/selectBooks'])
   }
 }
