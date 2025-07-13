@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from 'app/models/book.model';
+import { Book } from 'app/models/bookDetail.model';
 import { catchError, Observable, of } from 'rxjs';
 
 @Component({
