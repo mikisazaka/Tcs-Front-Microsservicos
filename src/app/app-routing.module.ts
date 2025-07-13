@@ -40,7 +40,7 @@ export const routes: Routes = [
     loadChildren: () => import('./adicionar-livro/adicionar-livro.module').then(m => m.AdicionarLivroModule)
   },
   {
-    path: 'editarLivro',
+    path: 'editarLivro/:id',
     loadChildren: () => import('./editar-livro/editar-livro.module').then(m => m.EditarLivroModule)
   }
 ];

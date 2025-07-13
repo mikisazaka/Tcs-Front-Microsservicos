@@ -46,109 +46,33 @@
         <th scope="col" class="px-6 py-3">Nome</th>
         <th scope="col" class="px-6 py-3">Autor</th>
         <th scope="col" class="px-6 py-3">Ano de Lançamento</th>
-        <th scope="col" class="px-6 py-3">Rating</th>
         <th scope="col" class="px-6 py-3">Class. Indicativa</th>
-        <th scope="col" class="px-6 py-3">Ação</th>
+        <th scope="col" class="px-6 py-3">Gênero</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="bg-white border-b hover:bg-beige-light">
+      <tr *ngFor="let livro of livros"
+      class="bg-white border-b hover:bg-beige-light">
         <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-          <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/40?img=6" alt="Capa do livro">
+          <img class="w-10 h-10 rounded-full" [src]=getImageUrl(livro.imagePath) alt="Capa do livro">
           <div class="ps-3">
-            <div class="text-base font-semibold">Harry Potter e a Pedra Filosofal</div>
+            <div class="text-base font-semibold">{{livro.title}}</div>
           </div>
         </th>
-        <td class="px-6 py-4">J.K. Rowling</td>
-        <td class="px-6 py-4">1997</td>
+        <td class="px-6 py-4">{{livro.author}}</td>
+        <td class="px-6 py-4">{{livro.publishedYear}}</td>
         <td class="px-6 py-4">
-          <div class="flex items-center">
-            <svg class="w-4 h-4 text-yellow-400 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20"><path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/></svg>
-            <span class="font-medium text-gray-700">4.9</span>
-          </div>
+          <span class="text-xs font-medium me-2 px-2.5 py-0.5 rounded-full" 
+          [ngClass]="contentRatingColors[livro.contentRating]">{{ contentRatingLabels[livro.contentRating] || 'N/A' }}</span>
         </td>
-        <td class="px-6 py-4">
-          <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">Livre</span>
-        </td>
+        <td class="px-6 py-4">{{livro.gender}}</td>
         <td class="px-6 py-4">
             <div class="flex items-center gap-x-2">
-                <button type="button" class="text-brown-dark bg-brown-light hover:bg-beige-light focus:ring-4 focus:outline-none focus:ring-brown-light font-medium rounded-lg text-xs px-3 py-1.5 text-center">Editar</button>
-                <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center">Remover</button>
-            </div>
-        </td>
-      </tr>
-      <tr class="bg-white border-b hover:bg-beige-light">
-        <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-          <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/40?img=7" alt="Capa do livro">
-          <div class="ps-3">
-            <div class="text-base font-semibold">O Pequeno Príncipe</div>
-          </div>
-        </th>
-        <td class="px-6 py-4">Antoine de Saint-Exupéry</td>
-        <td class="px-6 py-4">1943</td>
-        <td class="px-6 py-4">
-          <div class="flex items-center">
-            <svg class="w-4 h-4 text-yellow-400 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20"><path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/></svg>
-            <span class="font-medium text-gray-700">4.8</span>
-          </div>
-        </td>
-        <td class="px-6 py-4">
-          <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">Livre</span>
-        </td>
-        <td class="px-6 py-4">
-            <div class="flex items-center gap-x-2">
-                <button type="button" class="text-brown-dark bg-brown-light hover:bg-beige-light focus:ring-4 focus:outline-none focus:ring-brown-light font-medium rounded-lg text-xs px-3 py-1.5 text-center">Editar</button>
-                <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center">Remover</button>
-            </div>
-        </td>
-      </tr>
-      <tr class="bg-white border-b hover:bg-beige-light">
-        <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-          <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/40?img=8" alt="Capa do livro">
-          <div class="ps-3">
-            <div class="text-base font-semibold">O Hobbit</div>
-          </div>
-        </th>
-        <td class="px-6 py-4">J.R.R. Tolkien</td>
-        <td class="px-6 py-4">1937</td>
-        <td class="px-6 py-4">
-          <div class="flex items-center">
-            <svg class="w-4 h-4 text-yellow-400 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20"><path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/></svg>
-            <span class="font-medium text-gray-700">4.7</span>
-          </div>
-        </td>
-        <td class="px-6 py-4">
-          <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">12+</span>
-        </td>
-        <td class="px-6 py-4">
-            <div class="flex items-center gap-x-2">
-                <button type="button" class="text-brown-dark bg-brown-light hover:bg-beige-light focus:ring-4 focus:outline-none focus:ring-brown-light font-medium rounded-lg text-xs px-3 py-1.5 text-center">Editar</button>
-                <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center">Remover</button>
-            </div>
-        </td>
-      </tr>
-      <tr class="bg-white border-b hover:bg-beige-light">
-        <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-          <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/40?img=9" alt="Capa do livro">
-          <div class="ps-3">
-            <div class="text-base font-semibold">O Diário de Anne Frank</div>
-          </div>
-        </th>
-        <td class="px-6 py-4">Anne Frank</td>
-        <td class="px-6 py-4">1947</td>
-        <td class="px-6 py-4">
-          <div class="flex items-center">
-            <svg class="w-4 h-4 text-yellow-400 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20"><path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/></svg>
-            <span class="font-medium text-gray-700">4.9</span>
-          </div>
-        </td>
-        <td class="px-6 py-4">
-          <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">12+</span>
-        </td>
-        <td class="px-6 py-4">
-            <div class="flex items-center gap-x-2">
-                <button type="button" class="text-brown-dark bg-brown-light hover:bg-beige-light focus:ring-4 focus:outline-none focus:ring-brown-light font-medium rounded-lg text-xs px-3 py-1.5 text-center">Editar</button>
-                <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center">Remover</button>
+                <button type="button" class="text-brown-dark bg-brown-light hover:bg-beige-light focus:ring-4 focus:outline-none focus:ring-brown-light 
+                font-medium rounded-lg text-xs px-3 py-1.5 text-center" (click)="goToEditar(livro.id)">Editar</button>
+
+                <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium 
+                rounded-lg text-xs px-3 py-1.5 text-center" (click)="deletarLivro(livro.id!)">Remover</button>
             </div>
         </td>
       </tr>

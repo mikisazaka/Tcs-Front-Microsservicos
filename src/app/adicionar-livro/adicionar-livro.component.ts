@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from 'app/models/book.model';
 import { BookService } from 'app/services/book/book.service';
 import { initFlowbite } from 'flowbite';
@@ -14,14 +15,21 @@ export class AdicionarLivroComponent implements AfterViewInit {
 
   book: Book = {
     title: '', author: '', publishedYear: 0, gender: 'Terror',
-    pagesQuantity: '', contentRating: '10', image: undefined
+    pagesQuantity: 0, contentRating: '10', image: undefined
   };
   genres = ['Romance', 'Terror', 'Fantasia', 'Drama', 'Mistério', 'Suspense'];
-  contentRatings = ['Livre', '10', '12', '14', '16', '18'];
+  contentRatings = [
+    { label: 'Livre', value: 'LIVRE' },
+    { label: '10', value: 'DEZ' },
+    { label: '12', value: 'DOZE' },
+    { label: '14', value: 'QUATORZE' },
+    { label: '16', value: 'DEZESSEIS' },
+    { label: '18', value: 'DEZOITO' }
+  ];
   selectedGenre: string = "Terror";
   selectedContentRating: string = "10";
 
-  constructor(private bookService: BookService) { }
+  constructor(public router: Router, private bookService: BookService) { }
 
   ngAfterViewInit(): void {
     initFlowbite();
@@ -57,8 +65,10 @@ export class AdicionarLivroComponent implements AfterViewInit {
 
         this.book = {
           title: '', author: '', publishedYear: 0, gender: 'Terror',
-          pagesQuantity: '', contentRating: '10', image: undefined
+          pagesQuantity: 0, contentRating: '10', image: undefined
         };
+
+        this.router.navigate(['/selectBooks']);
       },
       error: (error) => {
         Swal.fire({
