@@ -1,0 +1,25 @@
+.book-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  isolation: isolate;
+}
+
+.book-image-container,
+.book-info {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.book-info {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 3rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.book-info #btn-titulo-livro {
+    pointer-events: auto;
+}

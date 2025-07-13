@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from 'app/models/book.model';
 import { BookService } from 'app/services/book/book.service';
 
@@ -14,7 +15,8 @@ export class ListarLivrosComponent implements OnInit {
   public readonly apiBaseUrl = 'http://localhost:8887'
 
   constructor(
-    private bookService: BookService
+    private bookService: BookService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,10 @@ export class ListarLivrosComponent implements OnInit {
         console.error('Falha ao carregar os livros:', err);
       }
     });
+  }
+
+  goToLivro(id: number) {
+    this.router.navigate(['/livro/' + `${id}`])
   }
 
 }
