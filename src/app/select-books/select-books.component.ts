@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 export class SelectBooksComponent implements AfterViewInit, OnInit {
 
   livros: Book[] = [];
+  filtroTitulo: string = '';
+
   contentRatingLabels: { [key: string]: string } = {
     LIVRE: 'Livre',
     DEZ: '10',
@@ -57,10 +59,10 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
   }
 
   goToEditar(id: number | undefined) {
-  if (id !== undefined) {
-    this.router.navigate(['/editarLivro', id]);
+    if (id !== undefined) {
+      this.router.navigate(['/editarLivro', id]);
+    }
   }
-}
 
   deletarLivro(id: number) {
     Swal.fire({
@@ -101,6 +103,14 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
 
   getImageUrl(imagePath: string | undefined): string {
     return imagePath ? `http://localhost:8887/images/${imagePath}` : 'https://via.placeholder.com/40';
+  }
+
+  get livrosFiltrados(): Book[] {
+    if (!this.filtroTitulo) return this.livros;
+
+    return this.livros.filter((livro) =>
+      livro.title.toLowerCase().includes(this.filtroTitulo.toLowerCase())
+    );
   }
 
 }
