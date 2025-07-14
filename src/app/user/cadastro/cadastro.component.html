@@ -1,11 +1,11 @@
 <div class="flex items-center justify-center cadastro-container" style="background-color: #F7F1ED;">
-  <mat-card class="login-card" style="width: 25rem;">
+  <mat-card class="login-card" style="width: 27rem;">
     <mat-card-header
       class="cadastro-card-header grid justify-center"
-      style="margin-top: 1rem; margin-bottom: 1rem"
+      style="margin-top: 1rem; margin-bottom: 1rem;"
     >
       <mat-card-title class="register-title">Seja bem-vindo(a)!</mat-card-title>
-      <mat-card-subtitle class="register-subtitle"
+      <mat-card-subtitle class="register-subtitle text-center"
         >Faça o cadastro para continuar</mat-card-subtitle
       >
     </mat-card-header>
@@ -16,28 +16,30 @@
         [formGroup]="cadastroForm"
         (ngSubmit)="onSubmit()"
       >
-        <mat-form-field class="w-full">
-          <mat-label>Nome</mat-label>
-          <input matInput type="text" placeholder="Nome" formControlName="firstName" required />
-        </mat-form-field>
-
-        <mat-form-field class="w-full">
-          <mat-label>Sobrenome</mat-label>
-          <input matInput type="text" placeholder="Sobrenome" formControlName="lastName" required />
-        </mat-form-field>
-
-        <mat-form-field class="w-full">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" placeholder="seu@email.com" formControlName="email" required />
-        </mat-form-field>
-
-        <mat-form-field class="w-full">
-          <mat-label>Senha</mat-label>
-          <input matInput type="password" placeholder="********" formControlName="password" required />
-        </mat-form-field>
+        <div class="grid justify-center">
+          <mat-form-field class="">
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" placeholder="Nome" formControlName="firstName" required />
+          </mat-form-field>
+  
+          <mat-form-field class="w-60">
+            <mat-label>Sobrenome</mat-label>
+            <input matInput type="text" placeholder="Sobrenome" formControlName="lastName" required />
+          </mat-form-field>
+  
+          <mat-form-field class="w-60">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" placeholder="seu@email.com" formControlName="email" required />
+          </mat-form-field>
+  
+          <mat-form-field class="w-60">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" placeholder="********" formControlName="password" required />
+          </mat-form-field>
+        </div>
 
         <div class="flex justify-center items-center" style="gap: 1rem;">
-          <button type="submit" class="login-button text-white focus:outline-none focus:ring-4 focus:ring-red-300 font-medium 
+          <button type="submit" style="cursor: pointer;" class="login-button text-white focus:outline-none focus:ring-4 focus:ring-red-300 font-medium 
           rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">CONFIRMAR</button>
           <a (click)="goToLogin()" class="go-to-login-btn">
             Fazer login

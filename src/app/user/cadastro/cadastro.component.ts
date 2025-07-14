@@ -32,7 +32,9 @@ export class CadastroComponent implements OnInit {
 
   onSubmit(): void {
     if (this.cadastroForm.invalid) {
-      const fieldNames: { [key: string]: string } = {
+      const fieldNames: { 
+        [key: string]: string 
+      } = {
         firstName: 'nome',
         lastName: 'sobrenome',
         email: 'e-mail',
@@ -45,17 +47,17 @@ export class CadastroComponent implements OnInit {
 
       for (const name in controls) {
         if (controls[name].invalid) {
-          const friendlyName = fieldNames[name] || name;
+          const nameE = fieldNames[name] || name;
           if (controls[name].hasError('required')) {
-            errorMessage = `<p>O campo <strong>${friendlyName}</strong> é obrigatório.</p>`;
+            errorMessage = `<p>O campo <strong>${nameE}</strong> é obrigatório.</p>`;
           }
           if (controls[name].hasError('minlength')) {
             const requiredLength =
               controls[name].errors?.['minlength'].requiredLength;
-            errorMessage = `<p>O campo <strong>${friendlyName}</strong> precisa ter no mínimo ${requiredLength} caracteres.</p>`;
+            errorMessage = `<p>O campo <strong>${nameE}</strong> precisa ter no mínimo ${requiredLength} caracteres.</p>`;
           }
           if (controls[name].hasError('email')) {
-            errorMessage = `<p>O campo <strong>${friendlyName}</strong> não é um e-mail válido.</p>`;
+            errorMessage = `<p>O campo <strong>${nameE}</strong> não é um e-mail válido.</p>`;
           }
 
           if (errorMessage) {
