@@ -15,10 +15,13 @@ export class EditarLivroComponent implements AfterViewInit {
 
   book: Book = {
     title: '', author: '', publishedYear: 0, gender: '',
-    pagesQuantity: 0, contentRating: '', image: undefined
+    pagesQuantity: 0, contentRating: '', image: null
   };
   genres = ['Romance', 'Terror', 'Fantasia', 'Drama', 'Mistério', 'Suspense'];
   selectedGenre: string = "Terror";
+
+  isWrong: boolean = false;
+  errorMessage: string = "";
 
   constructor(private route: ActivatedRoute, public router: Router, private bookService: BookService) { }
 
@@ -50,32 +53,47 @@ export class EditarLivroComponent implements AfterViewInit {
     this.selectedGenre = generoEscolhido;
   }
 
+  validarCampos() {
+    if (this.book.publishedYear <= 0) {
+      this.isWrong = true;
+    }
+  }
+
   enviarFormulario() {
-    this.bookService.editarLivro(this.book.id!, this.book).subscribe({
-      next: () => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Edição realizada!',
-          text: 'O livro foi atualizado com sucesso.',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
-        });
+    this.validarCampos();
+    if (this.isWrong) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ano de publicação inválido',
+      });
+      this.isWrong = false;
+    } else {
+      this.bookService.editarLivro(this.book.id!, this.book).subscribe({
+        next: () => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Edição realizada!',
+            text: 'O livro foi atualizado com sucesso.',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+          });
 
-        this.book = {
-          title: '', author: '', publishedYear: 0, gender: 'Terror',
-          pagesQuantity: 0, contentRating: '10', image: undefined
-        };
+          this.book = {
+            title: '', author: '', publishedYear: 0, gender: 'Terror',
+            pagesQuantity: 0, contentRating: '10', image: null
+          };
 
-        this.router.navigate(['/selectBooks']);
-      },
-      error: (error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro ao editar',
-          text: 'Verifique os dados ou tente novamente.',
-        });
-      }
-    })
+          this.router.navigate(['/selectBooks']);
+        },
+        error: (error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao editar',
+            text: 'Verifique os dados ou tente novamente.',
+          });
+        }
+      })
+    }
   }
 
 }
