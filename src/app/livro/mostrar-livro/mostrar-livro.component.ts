@@ -3,8 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/bookDetail.model';
+import { Review } from 'app/models/review.model';
 import { LikeService } from 'app/services/interactions/like.service';
+import { ReviewService } from 'app/services/review/review.service';
 import { catchError, Observable, of, tap } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mostrar-livro',
@@ -16,6 +19,7 @@ import { catchError, Observable, of, tap } from 'rxjs';
 export class MostrarLivroComponent implements OnInit {
 
   isLiked: boolean = false;
+  allReviews: Review[] = []
 
   livro$?: Observable<Book | null>
   API_URL = 'http://localhost:8887/book'
@@ -25,7 +29,8 @@ export class MostrarLivroComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     public authService: AuthService,
-    public likeService: LikeService
+    public likeService: LikeService,
+    public reviewService: ReviewService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +48,14 @@ export class MostrarLivroComponent implements OnInit {
           return of(null);
         })
       );
-    }
+      this.reviewService.getReviewsLivro(parseInt(id)).subscribe({
+        next: (reviews) => {
+          this.allReviews = reviews;
+        },
+        error: (err) => {
+        }
+      });
+    } 
   }
 
   public verificarStatusDoLike(bookId: number): void {
@@ -58,17 +70,21 @@ export class MostrarLivroComponent implements OnInit {
   }
 
   onLikeClick(bookId: number): void {
-    const estadoAnterior = this.isLiked;
+    if(this.authService.isLoggedIn()) {
+      const estadoAnterior = this.isLiked;
 
-    this.isLiked = !this.isLiked;
+      this.isLiked = !this.isLiked;
 
-    this.likeService.like(bookId).subscribe({
-      next: () => {
-      },
-      error: (err) => {
-        this.isLiked = estadoAnterior;  
-      }
-    });
+      this.likeService.like(bookId).subscribe({
+        next: () => {
+        },
+        error: (err) => {
+          this.isLiked = estadoAnterior;  
+        }
+      });
+    } else {
+      Swal.fire('Acesso Negado', 'Você precisa fazer login para curtir um livro.', 'warning');
+    }
   }
 
 }

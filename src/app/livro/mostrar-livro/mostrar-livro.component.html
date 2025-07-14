@@ -1,11 +1,11 @@
 <div
   *ngIf="livro$ | async as livro; else livroNotFound"
   class="flex justify-center items-center"
-  style="height: calc(100vh - 72px); background-color: #FDE4D4;"
+  style="height: calc(100vh - 72px); background-color: #fde4d4"
 >
   <div
     id="livro"
-    style="border-radius: 10px; padding: 1rem; background-color: #fff;"
+    style="border-radius: 10px; padding: 1rem; background-color: #fff"
     class="flex gap-5"
   >
     <div class="imagem-livro">
@@ -17,7 +17,14 @@
     </div>
     <div class="flex flex-col infos-livro gap-5" style="width: 20rem">
       <div>
-        <p style="color: #000; font-weight: bold; font-size: 40px; overflow-wrap: break-word;">
+        <p
+          style="
+            color: #000;
+            font-weight: bold;
+            font-size: 40px;
+            overflow-wrap: break-word;
+          "
+        >
           {{ livro.title }}
         </p>
 
@@ -59,12 +66,55 @@
           <span class="r-18 r">18+</span>
         </div>
 
-        <svg *ngIf="!isLiked" (click)="onLikeClick(livro.id)" class="btn-i-like w-14 h-14 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-        </svg>
-        <svg *ngIf="isLiked" (click)="onLikeClick(livro.id)" class="btn-i-like w-14 h-14 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24">
-          <path stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-        </svg>
+        <div
+          id="like-div"
+          class="w-14 h-14"
+          style="
+            background-color: #fff;
+            margin-top: 1rem;
+            border-radius: 50%;
+            background-color: rgb(235, 235, 235);
+          "
+        >
+          <svg
+            *ngIf="!isLiked"
+            (click)="onLikeClick(livro.id)"
+            class="btn-i-like w-14 h-14 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="lightgray"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="lightgray"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+            />
+          </svg>
+          <svg
+            *ngIf="isLiked"
+            (click)="onLikeClick(livro.id)"
+            class="btn-i-like w-14 h-14 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="red"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="red"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+            />
+          </svg>
+        </div>
 
         <p *ngSwitchDefault class="text-xl font-bold">
           <span class="font-bold text-2xl" style="color: #000"
@@ -74,6 +124,23 @@
         </p>
       </div>
     </div>
+  </div>
+</div>
+
+<div
+  *ngFor="let review of allReviews"
+  class="book-card flex justify-center"
+  style="background-color: #fde4d4;"
+>
+  <div class="review mb-3 p-3">
+    <p *ngIf="review.rating == 0">☆☆☆☆☆</p>
+    <p *ngIf="review.rating == 1">⭐☆☆☆☆</p>
+    <p *ngIf="review.rating == 2">⭐⭐☆☆☆</p>
+    <p *ngIf="review.rating == 3">⭐⭐⭐☆☆</p>
+    <p *ngIf="review.rating == 4">⭐⭐⭐⭐☆</p>
+    <p *ngIf="review.rating == 5">⭐⭐⭐⭐⭐</p>
+    <p>{{ review.title }}</p>
+    <p>{{ review.comment }}</p>
   </div>
 </div>
 
