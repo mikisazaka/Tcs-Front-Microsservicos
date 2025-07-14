@@ -1,5 +1,14 @@
 @use '@angular/material' as mat;
 
+.login-button {
+    background-color: #a2543d;
+    transition: transform 0.3s ease;
+}
+
+.login-button:hover {
+    box-shadow: 2px 2px 6px #683627;
+}
+
 .cadastro-container {
     height: calc(100vh - 72px);
 }
