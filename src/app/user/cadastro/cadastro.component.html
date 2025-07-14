@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center cadastro-container" style="background-color: #F7F1ED;">
-  <mat-card class="login-card mat-elevation-z8" style="width: 50%">
+  <mat-card class="login-card" style="width: 25rem;">
     <mat-card-header
-      class="login-card-header grid justify-center"
+      class="cadastro-card-header grid justify-center"
       style="margin-top: 1rem; margin-bottom: 1rem"
     >
       <mat-card-title class="register-title">Seja bem-vindo(a)!</mat-card-title>
@@ -12,7 +12,7 @@
 
     <mat-card-content>
       <form
-        class="login-form"
+        class="cadastro-form"
         [formGroup]="cadastroForm"
         (ngSubmit)="onSubmit()"
       >
