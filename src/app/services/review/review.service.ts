@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+  
 export class ReviewService {
 
   private REVIEW_API_URL = 'http://localhost:8889/review'
@@ -20,4 +21,21 @@ export class ReviewService {
     return this.http.get<Review[]>(url);
   }
 
+  registrarReview(bookId: number, rating: number, title: string, comment: string): Observable<Review>{
+      if(this.authService.isLoggedIn()) {
+        const userId = this.authService.getUserId()
+
+        const body = {
+          userId: userId,     
+          bookId: bookId,   
+          rating: rating,     
+          title: title,
+          comment: comment
+        };
+  
+        return this.http.post<Review>(`${this.REVIEW_API_URL}/add`, body);
+      } else {
+        return EMPTY
+      }
+    }
 }
