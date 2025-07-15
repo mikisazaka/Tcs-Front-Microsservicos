@@ -11,7 +11,9 @@ export class AuthService {
 
   private readonly API_URL = 'http://localhost:8888'
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.API_URL}/auth/login`, credentials);
@@ -32,6 +34,15 @@ export class AuthService {
       }
     }
     return null;
+  }
+
+  public getUserId(): number {
+    if(this.isLoggedIn()) {
+      const decodedToken = this.getDecodedToken();
+      return parseInt(decodedToken.sub);
+    } else {
+      return -1
+    }
   }
 
   public isAdmin(): boolean {

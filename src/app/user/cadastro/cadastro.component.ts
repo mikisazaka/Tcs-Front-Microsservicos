@@ -32,11 +32,46 @@ export class CadastroComponent implements OnInit {
 
   onSubmit(): void {
     if (this.cadastroForm.invalid) {
+      const fieldNames: { 
+        [key: string]: string 
+      } = {
+        firstName: 'nome',
+        lastName: 'sobrenome',
+        email: 'e-mail',
+        password: 'senha',
+      };
+
+      let errorMessage = ''; 
+
+      const controls = this.cadastroForm.controls;
+
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          const nameE = fieldNames[name] || name;
+          if (controls[name].hasError('required')) {
+            errorMessage = `<p>O campo <strong>${nameE}</strong> é obrigatório.</p>`;
+          }
+          if (controls[name].hasError('minlength')) {
+            const requiredLength =
+              controls[name].errors?.['minlength'].requiredLength;
+            errorMessage = `<p>O campo <strong>${nameE}</strong> precisa ter no mínimo ${requiredLength} caracteres.</p>`;
+          }
+          if (controls[name].hasError('email')) {
+            errorMessage = `<p>O campo <strong>${nameE}</strong> não é um e-mail válido.</p>`;
+          }
+
+          if (errorMessage) {
+            break; 
+          }
+
+        }
+      }
+
       Swal.fire({
         icon: 'error',
         title: 'Ops! Cadastro inválido',
-        text: 'Por favor, preencha os campos corretamente.',
-        confirmButtonColor: '#a2543d', // Cor do seu tema para o botão
+        html: `<div>${errorMessage}</div>`,
+        confirmButtonColor: '#a2543d',
         confirmButtonText: 'OK, ENTENDI',
       });
       return;
