@@ -12,7 +12,8 @@ export class ReviewService {
   private REVIEW_API_URL = 'http://localhost:8889/review'
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   getReviewsLivro(bookId: number): Observable<Review[]> {
