@@ -23,13 +23,13 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./select-books/select-books.module').then((m) => m.SelectBooksModule)
   },
-  { 
-    path: 'cadastro', 
-    loadChildren: () => import('./user/cadastro/cadastro.module').then(m => m.CadastroModule) 
+  {
+    path: 'cadastro',
+    loadChildren: () => import('./user/cadastro/cadastro.module').then(m => m.CadastroModule)
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'livro/:id',
@@ -46,6 +46,10 @@ export const routes: Routes = [
   {
     path: 'editarLivro/:id',
     loadChildren: () => import('./editar-livro/editar-livro.module').then(m => m.EditarLivroModule)
+  },
+  {
+    path: 'like',
+    loadChildren: () => import('./likes/likes.module').then(m => m.LikesModule)
   }
 ];
 
