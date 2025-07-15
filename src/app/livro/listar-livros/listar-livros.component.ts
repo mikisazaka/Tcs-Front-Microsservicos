@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from 'app/models/bookDetail.model';
-import { BookDetail } from 'app/services/book-detail.service';
+import { BookDetailService } from 'app/services/book-detail.service';
 
 @Component({
   selector: 'app-listar-livros',
@@ -15,7 +15,7 @@ export class ListarLivrosComponent implements OnInit {
   public readonly apiBaseUrl = 'http://localhost:8887'
 
   constructor(
-    private bookDetail: BookDetail,
+    private bookDetail: BookDetailService,
     public router: Router
   ) { }
 

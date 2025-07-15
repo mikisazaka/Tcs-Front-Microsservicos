@@ -33,4 +33,8 @@ export class NavbarComponent {
   goToLogin() {
     this.router.navigate(['/login'])
   }
+
+  goToLikes() {
+    this.router.navigate(['/like'])
+  }
 }

@@ -1,5 +1,5 @@
 <div *ngIf="authService.isAdmin()"
-  class="relative overflow-x-auto shadow-md sm:rounded-lg p-4 bg-white border border-gray-200">
+  class="relative shadow-md sm:rounded-lg p-4 bg-white border border-gray-200">
   <div class="flex flex-wrap items-center justify-between pb-4">
     <div class="flex items-center gap-4">
       <div class="relative">
@@ -27,7 +27,7 @@
         </button>
         <div id="dropdownAction" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
           <ul class="py-1 text-sm text-gray-700" aria-labelledby="dropdownActionButton" *ngFor="let contentRating of contentRatings">
-            <li><a (click)="selecionarClassificacao(contentRating.label)" (change)="getLivrosFiltrados(filtroClassificacao, filtroTitulo)" class="block px-4 py-2" [ngClass]="contentRatingColors[contentRating.value]">{{contentRating.label}}</a></li>
+            <li><a (click)="selecionarClassificacao(contentRating.value)" class="block px-4 py-2" [ngClass]="contentRatingColors[contentRating.value]">{{contentRating.label}}</a></li>
           </ul>
         </div>
       </div>
@@ -61,7 +61,7 @@
       <tr *ngFor="let livro of livrosFiltrados" class="bg-white border-b hover:bg-beige-light">
         <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <img class="w-10 h-10 rounded-full" [src]=getImageUrl(livro.imagePath) alt="Capa do livro">
-          <div class="ps-3">
+          <div class="break-words whitespace-normal ps-3">
             <div class="text-base font-semibold">{{livro.title}}</div>
           </div>
         </th>
