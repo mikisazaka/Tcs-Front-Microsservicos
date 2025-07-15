@@ -49,4 +49,8 @@ export class BookService {
   encontrarPorId(id: number): Observable<Book> {
     return this.http.get<Book>(`${this.API_URL}/${id}`);
   }
+
+  filtrarPorTituloClassificacao(contentRating: string, title: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.API_URL}/filter`);
+  }
 }

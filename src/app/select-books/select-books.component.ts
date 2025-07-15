@@ -4,6 +4,7 @@ import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { BookService } from 'app/services/book/book.service';
 import { initFlowbite } from 'flowbite';
+import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +16,18 @@ import Swal from 'sweetalert2';
 export class SelectBooksComponent implements AfterViewInit, OnInit {
 
   livros: Book[] = [];
+  livrosFiltrados: Book[] = [];
   filtroTitulo: string = '';
+  filtroClassificacao: string = '';
+
+  contentRatings = [
+    { label: 'Livre', value: 'LIVRE' },
+    { label: '10', value: 'DEZ' },
+    { label: '12', value: 'DOZE' },
+    { label: '14', value: 'QUATORZE' },
+    { label: '16', value: 'DEZESSEIS' },
+    { label: '18', value: 'DEZOITO' }
+  ];
 
   contentRatingLabels: { [key: string]: string } = {
     LIVRE: 'Livre',
@@ -50,6 +62,7 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
     this.bookService.getLivros().subscribe({
       next: (livros) => {
         this.livros = livros;
+        this.getLivrosFiltrados(this.filtroClassificacao, this.filtroTitulo);
       }
     })
   }
@@ -101,16 +114,26 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
     })
   }
 
+  selecionarClassificacao(ctRating: string) {
+    this.filtroClassificacao = ctRating;
+  }
+
   getImageUrl(imagePath: string | undefined): string {
     return imagePath ? `http://localhost:8887/images/${imagePath}` : 'https://via.placeholder.com/40';
   }
 
-  get livrosFiltrados(): Book[] {
+  getLivrosFiltrados(contentRating: string, title: string): void {
+    this.bookService.filtrarPorTituloClassificacao(contentRating, title).subscribe(books => {
+      this.livrosFiltrados = books;
+    });
+  }
+
+  /*get livrosFiltrados(): Book[] {
     if (!this.filtroTitulo) return this.livros;
 
     return this.livros.filter((livro) =>
       livro.title.toLowerCase().includes(this.filtroTitulo.toLowerCase())
     );
-  }
+  }*/
 
 }
