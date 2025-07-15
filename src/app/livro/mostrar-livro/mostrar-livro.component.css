@@ -1,5 +1,5 @@
 body {
-  background-color: #F7F1ED;
+  margin: 0;
 }
 
 .r-18 {
@@ -38,10 +38,6 @@ body {
   padding-right: .75rem;
 }
 
-#livro {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
 .btn-i-like:hover {
   fill: red;
   color: red;
@@ -52,4 +48,138 @@ body {
   border: 1px solid #000;
   border-radius: 15px;
   background-color: #fff;
+}
+
+#btn-enviar-avaliacao {
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+}
+
+.pagina-container {
+  padding: 2rem;
+  width: 100%;
+}
+
+.secao-detalhes-e-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 1200px;
+  margin: 0 auto; 
+}
+
+.imagem-livro img {
+  height: 70vh;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.infos-e-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1; 
+  min-width: 300px; 
+}
+
+.titulo-livro {
+  font-weight: bold;
+  font-size: 40px;
+  overflow-wrap: break-word;
+}
+
+.autor-livro {
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.bloco-classificacao-e-like {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#like-div {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-i-like {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.form-nova-review {
+  display: grid;
+  gap: 1rem;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+#btn-enviar-avaliacao {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: #3085d6;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+.secao-avaliacoes {
+  max-width: 1200px;
+  margin: 2rem auto 0 auto; 
+}
+
+.titulo-secao-avaliacoes {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.lista-reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.review-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 400px; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.review-title {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0.75rem 0 0.5rem 0;
+}
+
+.review-comment {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+#input-comentario-review,
+#input-titulo-review {
+  border-radius: 5px;
+  border: 1px solid lightgray;
 }

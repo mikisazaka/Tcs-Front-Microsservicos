@@ -1,149 +1,95 @@
-<div
-  *ngIf="livro$ | async as livro; else livroNotFound"
-  class="flex justify-center items-center"
-  style="height: calc(100vh - 72px); background-color: #fde4d4"
->
-  <div
-    id="livro"
-    style="border-radius: 10px; padding: 1rem; background-color: #fff"
-    class="flex gap-5"
-  >
+<div *ngIf="livro$ | async as livro;" class="pagina-container">
+  
+  <div class="secao-detalhes-e-form" style="background-color: #F7F1ED;">
+
     <div class="imagem-livro">
       <img
         [src]="apiBaseUrl + '/images/' + livro.imagePath"
         [alt]="'Capa do livro ' + livro.title"
-        style="height: 70vh; border-radius: 10px"
       />
     </div>
-    <div class="flex flex-col infos-livro gap-5" style="width: 20rem">
-      <div>
-        <p
-          style="
-            color: #000;
-            font-weight: bold;
-            font-size: 40px;
-            overflow-wrap: break-word;
-          "
-        >
-          {{ livro.title }}
-        </p>
 
-        <p style="color: #000; font-size: 24px; font-weight: 500">
-          {{ livro.author }}
-        </p>
-      </div>
+    <div class="infos-e-form-container">
+      
+      <div class="bloco-info-livro">
+        <p class="titulo-livro">{{ livro.title }}</p>
+        <p class="autor-livro">{{ livro.author }}</p>
 
-      <div>
-        <div class="grid items-center" style="color: #000; font-size: 18px">
-          <span> Ano: {{ livro.publishedYear }} </span>
-          <span> Páginas: {{ livro.pagesQuantity }} pág. </span>
-          <span> Gênero: {{ livro.gender }} </span>
+        <div class="flex items-center mt-3">
+          <ng-container *ngFor="let starType of getStarArray(averageRating)">
+            <div [ngSwitch]="starType">
+              <svg *ngSwitchCase="'full'" class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
+              <svg *ngSwitchCase="'half'" class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M13 4.024v-.005c0-.053.002-.353-.217-.632a1.013 1.013 0 0 0-1.176-.315c-.192.076-.315.193-.35.225-.052.05-.094.1-.122.134a4.358 4.358 0 0 0-.31.457c-.207.343-.484.84-.773 1.375a168.719 168.719 0 0 0-1.606 3.074h-.002l-4.599.367c-1.775.14-2.495 2.339-1.143 3.488L6.17 15.14l-1.06 4.406c-.412 1.72 1.472 3.078 2.992 2.157l3.94-2.388c.592-.359.958-.996.958-1.692v-13.6Zm-2.002 0v.025-.025Z" clip-rule="evenodd"/></svg>
+              <svg *ngSwitchCase="'empty'" class="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
+            </div>
+          </ng-container>
         </div>
       </div>
 
-      <div [ngSwitch]="livro.contentRating">
-        <div *ngSwitchCase="'LIVRE'">
-          <span class="r-livre r">L</span>
-        </div>
+      <div class="bloco-detalhes-adicionais grid">
+        <span> Ano: {{ livro.publishedYear }} </span>
+        <span> Páginas: {{ livro.pagesQuantity }} pág. </span>
+        <span> Gênero: {{ livro.gender }} </span>
+      </div>
 
-        <div *ngSwitchCase="'DEZ'">
-          <span class="r-10 r">10+</span>
+      <div class="bloco-classificacao-e-like">
+        <div [ngSwitch]="livro.contentRating">
+          <span *ngSwitchCase="'LIVRE'" class="r-livre r">L</span>
+          <span *ngSwitchCase="'DEZ'" class="r-10 r">10+</span>
+          <span *ngSwitchCase="'DOZE'" class="r-12 r">12+</span>
+          <span *ngSwitchCase="'QUATORZE'" class="r-14 r">14+</span>
+          <span *ngSwitchCase="'DEZESSEIS'" class="r-16 r">16+</span>
+          <span *ngSwitchCase="'DEZOITO'" class="r-18 r">18+</span>
+          <p *ngSwitchDefault>Classificação não informada</p>
         </div>
-
-        <div *ngSwitchCase="'DOZE'">
-          <span class="r-12 r">12+</span>
+        <div id="like-div">
+          <svg *ngIf="!isLiked" (click)="onLikeClick(livro.id)" class="btn-i-like" fill="lightgray" viewBox="0 0 24 24"><path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/></svg>
+          <svg *ngIf="isLiked" (click)="onLikeClick(livro.id)" class="btn-i-like" fill="red" viewBox="0 0 24 24"><path stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/></svg>
         </div>
+      </div>
 
-        <div *ngSwitchCase="'QUATORZE'">
-          <span class="r-14 r">14+</span>
+      <div class="form-nova-review">
+        <div class="grid gap-1">
+          <label>De uma nota geral para o livro <span style="color: red">*</span></label>
+          <div class="flex" (mouseleave)="onMouseLeave()">
+            <ng-container *ngFor="let star of stars">
+              <span (mouseenter)="onStarHover(star)" (click)="setRating(star)" style="cursor: pointer">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" [attr.fill]="hoverRating >= star || rating >= star ? '#FDC700' : 'lightGray'"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
+              </span>
+            </ng-container>
+          </div>
         </div>
-
-        <div *ngSwitchCase="'DEZESSEIS'">
-          <span class="r-16 r">16+</span>
+        <div class="grid gap-1">
+          <label for="input-titulo-review">Título da sua avaliação</label>
+          <input type="text" [(ngModel)]="titulo" placeholder="Ex: Incrível!" id="input-titulo-review"/>
         </div>
-
-        <div *ngSwitchCase="'DEZOITO'">
-          <span class="r-18 r">18+</span>
+        <div class="grid gap-1">
+          <label for="input-comentario-review">Sua avaliação <span style="color: red">*</span></label>
+          <textarea [(ngModel)]="comentario" placeholder="Escreva aqui o que você achou do livro..." id="input-comentario-review"></textarea>
         </div>
-
-        <div
-          id="like-div"
-          class="w-14 h-14"
-          style="
-            background-color: #fff;
-            margin-top: 1rem;
-            border-radius: 50%;
-            background-color: rgb(235, 235, 235);
-          "
-        >
-          <svg
-            *ngIf="!isLiked"
-            (click)="onLikeClick(livro.id)"
-            class="btn-i-like w-14 h-14 text-gray-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="lightgray"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="lightgray"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-            />
-          </svg>
-          <svg
-            *ngIf="isLiked"
-            (click)="onLikeClick(livro.id)"
-            class="btn-i-like w-14 h-14 text-gray-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="red"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="red"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-            />
-          </svg>
+        <div class="flex justify-center">
+          <button id="btn-enviar-avaliacao" (click)="enviar()">AVALIAR</button>
         </div>
-
-        <p *ngSwitchDefault class="text-xl font-bold">
-          <span class="font-bold text-2xl" style="color: #000"
-            >Classificação indicativa:
-          </span>
-          Não informada
-        </p>
       </div>
     </div>
   </div>
-</div>
 
-<div
-  *ngFor="let review of allReviews"
-  class="book-card flex justify-center"
-  style="background-color: #fde4d4;"
->
-  <div class="review mb-3 p-3">
-    <p *ngIf="review.rating == 0">☆☆☆☆☆</p>
-    <p *ngIf="review.rating == 1">⭐☆☆☆☆</p>
-    <p *ngIf="review.rating == 2">⭐⭐☆☆☆</p>
-    <p *ngIf="review.rating == 3">⭐⭐⭐☆☆</p>
-    <p *ngIf="review.rating == 4">⭐⭐⭐⭐☆</p>
-    <p *ngIf="review.rating == 5">⭐⭐⭐⭐⭐</p>
-    <p>{{ review.title }}</p>
-    <p>{{ review.comment }}</p>
+  <div class="secao-avaliacoes">
+    <div class="lista-reviews-container">
+      <div *ngFor="let review of allReviews" class="review-card">
+        <div class="flex items-center">
+          <ng-container *ngFor="let starType of getStarArray(review.rating)">
+            <div [ngSwitch]="starType">
+               <svg *ngSwitchCase="'full'" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
+              <svg *ngSwitchCase="'half'" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M13 4.024v-.005c0-.053.002-.353-.217-.632a1.013 1.013 0 0 0-1.176-.315c-.192.076-.315.193-.35.225-.052.05-.094.1-.122.134a4.358 4.358 0 0 0-.31.457c-.207.343-.484.84-.773 1.375a168.719 168.719 0 0 0-1.606 3.074h-.002l-4.599.367c-1.775.14-2.495 2.339-1.143 3.488L6.17 15.14l-1.06 4.406c-.412 1.72 1.472 3.078 2.992 2.157l3.94-2.388c.592-.359.958-.996.958-1.692v-13.6Zm-2.002 0v.025-.025Z" clip-rule="evenodd"/></svg>
+              <svg *ngSwitchCase="'empty'" class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
+            </div>
+          </ng-container>
+        </div>
+        <p class="review-title">{{ review.title }}</p>
+        <p class="review-comment">{{ review.comment }}</p>
+      </div>
+    </div>
   </div>
-</div>
 
-<ng-template #livroNotFound>
-  <app-not-found></app-not-found>
-</ng-template>
+</div>
