@@ -5,6 +5,7 @@ import { LivroRoutingModule } from './livro-routing.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { MostrarLivroComponent } from './mostrar-livro/mostrar-livro.component';
 import { ListarLivrosComponent } from './listar-livros/listar-livros.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +16,14 @@ import { ListarLivrosComponent } from './listar-livros/listar-livros.component';
   imports: [
     CommonModule,
     LivroRoutingModule,
-    SharedModule
-  ],
+    SharedModule,
+    FormsModule
+    ],
   exports: [
     ListarLivrosComponent
   ]
 })
 
-export class LivroModule { }
+export class LivroModule {
+  
+}
