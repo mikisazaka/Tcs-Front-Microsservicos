@@ -9,12 +9,15 @@ import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root',
 })
+  
 export class LikeService {
   private readonly API_URL = 'http://localhost:8889/like';
 
   likesCache: Like[] = [];
 
-  constructor(private http: HttpClient, public authService: AuthService) {}
+  constructor(private http: HttpClient,
+              public authService: AuthService
+             ) {}
 
   like(bookId: number): Observable<Like> {
     if (this.authService.isLoggedIn()) {
