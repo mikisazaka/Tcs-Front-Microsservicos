@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Book } from 'app/models/book.model';
 
@@ -51,6 +51,13 @@ export class BookService {
   }
 
   filtrarPorTituloClassificacao(contentRating: string, title: string): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.API_URL}/filter`);
+    let params = new HttpParams();
+  if (contentRating) {
+    params = params.set('contentRating', contentRating);
+  }
+  if (title) {
+    params = params.set('title', title);
+  }
+    return this.http.get<Book[]>(`${this.API_URL}/filter`, { params });
   }
 }

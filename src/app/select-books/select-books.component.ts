@@ -21,6 +21,7 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
   filtroClassificacao: string = '';
 
   contentRatings = [
+    { label: 'Todos', value: '' },
     { label: 'Livre', value: 'LIVRE' },
     { label: '10', value: 'DEZ' },
     { label: '12', value: 'DOZE' },
@@ -39,6 +40,7 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
   };
 
   contentRatingColors: { [key: string]: string } = {
+    '': 'bg-gray-100 text-gray-800',
     LIVRE: 'bg-green-100 text-green-800',
     DEZ: 'bg-blue-100 text-blue-800',
     DOZE: 'bg-yellow-100 text-yellow-800',
@@ -114,8 +116,9 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
     })
   }
 
-  selecionarClassificacao(ctRating: string) {
+  selecionarClassificacao(ctRating: string): void {
     this.filtroClassificacao = ctRating;
+    this.getLivrosFiltrados(this.filtroClassificacao, this.filtroTitulo);
   }
 
   getImageUrl(imagePath: string | undefined): string {
