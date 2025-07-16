@@ -4,16 +4,13 @@ import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
   
 export class AuthService {
+  private readonly API_URL = 'http://localhost:8888';
 
-  private readonly API_URL = 'http://localhost:8888'
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.API_URL}/auth/login`, credentials);
@@ -29,7 +26,7 @@ export class AuthService {
       try {
         return jwtDecode(token);
       } catch (error) {
-        console.error("Erro ao decodificar o token:", error);
+        console.error('Erro ao decodificar o token:', error);
         return null;
       }
     }
@@ -37,12 +34,17 @@ export class AuthService {
   }
 
   public getUserId(): number {
-    if(this.isLoggedIn()) {
+    if (this.isLoggedIn()) {
       const decodedToken = this.getDecodedToken();
       return parseInt(decodedToken.sub);
     } else {
-      return -1
+      return -1;
     }
+  }
+
+  public getUserName(): string {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken.name;
   }
 
   public isAdmin(): boolean {
@@ -52,6 +54,6 @@ export class AuthService {
 
   public isLoggedIn(): boolean {
     const token = localStorage.getItem('authToken');
-    return !!token; 
+    return !!token;
   }
 }
