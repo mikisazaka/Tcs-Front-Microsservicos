@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/telaInicial', pathMatch: 'full' },
@@ -51,14 +50,6 @@ export const routes: Routes = [
   {
     path: 'like',
     loadChildren: () => import('./likes/likes.module').then(m => m.LikesModule)
-  },
-  { 
-    path: 'reviews/:id',
-    loadChildren: () => import('./review/review.module').then(m => m.ReviewModule) 
-  },
-  {
-    path: '**',
-    component: NotFoundComponent
   }
 ];
 

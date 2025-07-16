@@ -7,16 +7,14 @@ import { SharedModule } from './shared/shared.module';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { tokenInterceptor } from './auth/token.interceptor';
 import { LivroModule } from './livro/livro.module';
-import { ReviewModule } from './review/review.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     FormsModule,
-    ReviewModule,
   ],
   providers: [
     provideHttpClient(withInterceptors([tokenInterceptor]))
