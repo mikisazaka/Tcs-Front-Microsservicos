@@ -11,7 +11,10 @@ import { AuthService } from 'app/auth/auth.service';
 
 export class NavbarComponent {
 
-  constructor(public router: Router, public authService: AuthService) { }
+  constructor(
+    public router: Router, 
+    public authService: AuthService,
+  ) { }
 
   goToHome() {
     this.router.navigate(['/telaInicial']);
@@ -36,5 +39,9 @@ export class NavbarComponent {
 
   goToLikes() {
     this.router.navigate(['/like'])
+  }
+
+  goToReviews(userId: number) {
+    this.router.navigate([`/reviews/${userId}`])
   }
 }
