@@ -1,0 +1,32 @@
+.titulo-secao-avaliacoes {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .lista-reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 400px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .review-title {
+    font-size: 20px;
+    margin: 0.75rem 0 0.5rem 0;
+  }
+  
+  .review-comment {
+    width: 100%;
+    word-wrap: break-word;
+  }
