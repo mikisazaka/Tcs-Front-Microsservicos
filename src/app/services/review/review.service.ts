@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Review } from 'app/models/review.model';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
+import { ReviewResponse } from 'app/models/review-response';
+import { AuthService } from 'app/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-  
 export class ReviewService {
 
   private REVIEW_API_URL = 'http://localhost:8889/review'
@@ -16,10 +17,10 @@ export class ReviewService {
     private authService: AuthService
   ) { }
 
-  getReviewsLivro(bookId: number): Observable<Review[]> {
+  getReviewsLivro(bookId: number): Observable<ReviewResponse> {
     const url = `${this.REVIEW_API_URL}/book/${bookId}`
 
-    return this.http.get<Review[]>(url);
+    return this.http.get<ReviewResponse>(url);
   }
 
   registrarReview(bookId: number, rating: number, title: string, comment: string): Observable<Review>{
@@ -39,4 +40,5 @@ export class ReviewService {
         return EMPTY
       }
     }
+
 }
