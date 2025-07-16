@@ -26,7 +26,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatButtonModule,
     MatSidenavModule,
     FullScreenMessageComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
 })
 export class SharedModule {}
