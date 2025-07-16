@@ -108,10 +108,6 @@ export class MostrarLivroComponent implements OnInit {
     }
   }
 
-  getStars(rating: number): string {
-    return '⭐'.repeat(rating) + '☆'.repeat(5 - rating);
-  }
-
   getStarArray(rating: number): string[] {
     const stars = [];
     const roundedRating = Math.round(rating * 2) / 2;
