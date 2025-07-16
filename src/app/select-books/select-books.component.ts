@@ -4,7 +4,6 @@ import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { BookService } from 'app/services/book/book.service';
 import { initFlowbite } from 'flowbite';
-import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -130,13 +129,4 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
       this.livrosFiltrados = books;
     });
   }
-
-  /*get livrosFiltrados(): Book[] {
-    if (!this.filtroTitulo) return this.livros;
-
-    return this.livros.filter((livro) =>
-      livro.title.toLowerCase().includes(this.filtroTitulo.toLowerCase())
-    );
-  }*/
-
 }
