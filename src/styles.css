@@ -6,6 +6,7 @@
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
 @import '@fontsource/inter/variable.css'; 
+@import '@fontsource/inter/variable.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Inter', sans-serif; }
