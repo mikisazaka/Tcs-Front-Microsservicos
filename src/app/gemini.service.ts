@@ -9,23 +9,16 @@ export class GeminiService {
 
   private apiKey = 'AIzaSyB-Br575iFb3r0NUGLDyfHb4DnR_DwrHcA';
 
-  private apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=${this.apiKey}`;
+  private apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${this.apiKey}`;
 
   constructor(private http: HttpClient) { }
 
-  sendMessage(message: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
+  sendMessage(contents: any[]): Observable<any> {
+    
     const body = {
-      contents: [{
-        parts: [{
-          text: message
-        }]
-      }]
+      contents: contents
     };
 
-    return this.http.post(this.apiUrl, body, { headers });
+    return this.http.post(this.apiUrl, body);
   }
 }
