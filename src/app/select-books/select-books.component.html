@@ -53,6 +53,7 @@
         <th scope="col" class="px-6 py-3">Nome</th>
         <th scope="col" class="px-6 py-3">Autor</th>
         <th scope="col" class="px-6 py-3">Ano de Lançamento</th>
+        <th scope="col" class="px-6 py-3">Quantidade de Páginas</th>
         <th scope="col" class="px-6 py-3">Class. Indicativa</th>
         <th scope="col" class="px-6 py-3">Gênero</th>
       </tr>
@@ -67,6 +68,7 @@
         </th>
         <td class="px-6 py-4">{{livro.author}}</td>
         <td class="px-6 py-4">{{livro.publishedYear}}</td>
+        <td class="px-6 py-4">{{livro.pagesQuantity}}</td>
         <td class="px-6 py-4">
           <span class="text-xs font-medium me-2 px-2.5 py-0.5 rounded-full"
             [ngClass]="contentRatingColors[livro.contentRating]">{{ contentRatingLabels[livro.contentRating] || 'N/A' }}</span>
