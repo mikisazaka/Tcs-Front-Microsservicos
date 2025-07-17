@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/bookDetail.model';
+import { List } from 'app/models/list.model';
 import { Review } from 'app/models/review.model';
 import { LikeService } from 'app/services/interactions/like.service';
+import { ListService } from 'app/services/interactions/list.service';
 import { ReviewService } from 'app/services/review/review.service';
+import { initFlowbite } from 'flowbite';
 import { catchError, Observable, of, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 
@@ -15,8 +18,26 @@ import Swal from 'sweetalert2';
   templateUrl: './mostrar-livro.component.html',
   styleUrl: './mostrar-livro.component.css',
 })
-export class MostrarLivroComponent implements OnInit {
+export class MostrarLivroComponent implements OnInit, AfterViewInit {
+  @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
+
+  toggleDropdown() {
+    const el = this.dropdownMenu.nativeElement;
+    if (el.classList.contains('hidden')) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  }
+
   isLiked: boolean = false;
+  livroId?: number;
+
+  listaEscolhida: string = '';
+  status = [
+    { label: 'Lido', value: 'READ' },
+    { label: 'Quero ler', value: 'WANT_TO_READ' }
+  ];
 
   rating: number = 0;
   hoverRating: number = 0;
@@ -38,8 +59,13 @@ export class MostrarLivroComponent implements OnInit {
     private http: HttpClient,
     public authService: AuthService,
     public likeService: LikeService,
-    public reviewService: ReviewService
-  ) {}
+    public reviewService: ReviewService,
+    public listService: ListService
+  ) { }
+
+  ngAfterViewInit(): void {
+    initFlowbite();
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -50,6 +76,7 @@ export class MostrarLivroComponent implements OnInit {
           if (livro) {
             this.verificarStatusDoLike(livro.id);
           }
+          this.livroId = livro.id;
         }),
         catchError((error) => {
           console.error('Livro não encontrado: ', error);
@@ -84,6 +111,19 @@ export class MostrarLivroComponent implements OnInit {
         .subscribe((resultado) => {
           this.isLiked = resultado;
         });
+    }
+  }
+
+  addLista() {
+    if (this.authService.isLoggedIn() && this.listaEscolhida.trim().length != 0) {
+      this.listService.adicionarLista(this.livroId!, this.listaEscolhida).subscribe({})
+      this.listaEscolhida = '';
+    } else {
+      Swal.fire(
+        'Acesso Negado',
+        'Você precisa fazer login para adicionar um livro em uma lista.',
+        'warning'
+      );
     }
   }
 
@@ -139,7 +179,7 @@ export class MostrarLivroComponent implements OnInit {
         'warning'
       );
 
-    } else if(this.rating < 1 || this.comentario == '') {
+    } else if (this.rating < 1 || this.comentario == '') {
       Swal.fire({
         icon: 'error',
         title: 'Erro!',
