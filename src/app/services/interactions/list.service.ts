@@ -66,4 +66,9 @@ export class ListService {
     return this.http.get<List[]>(`${this.API_URL}/checklistUsuario/${userId}`);
   }
 
+  getChecklist(bookId: number): Observable<List> {
+    const userId = this.authService.getUserId();
+    const url = `${this.API_URL}/${userId}/${bookId}`;
+    return this.http.get<List>(url);
+  }
 }
