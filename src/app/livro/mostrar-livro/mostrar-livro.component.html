@@ -82,18 +82,35 @@
       </div>
 
       <div class="form-nova-review">
-        <div class="grid gap-1">
-          <label>Dê uma nota geral para o livro <span style="color: red">*</span></label>
-          <div class="flex" (mouseleave)="onMouseLeave()">
-            <ng-container *ngFor="let star of stars">
-              <span (mouseenter)="onStarHover(star)" (click)="setRating(star)" style="cursor: pointer">
-                <svg class="w-10 h-10" viewBox="0 0 24 24"
-                  [attr.fill]="hoverRating >= star || rating >= star ? '#FDC700' : 'lightGray'">
-                  <path
-                    d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
-                </svg>
-              </span>
-            </ng-container>
+        <div class="flex gap-5">
+          <div class="grid">
+            <label>Dê uma nota geral para o livro <span style="color: red">*</span></label>
+            <div class="flex" (mouseleave)="onMouseLeave()">
+              <ng-container *ngFor="let star of stars">
+                <span (mouseenter)="onStarHover(star)" (click)="setRating(star)" style="cursor: pointer">
+                  <svg class="w-10 h-10" viewBox="0 0 24 24"
+                    [attr.fill]="hoverRating >= star || rating >= star ? '#FDC700' : 'lightGray'">
+                    <path
+                      d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                  </svg>
+                </span>
+              </ng-container>
+            </div>
+          </div>
+          <div *ngIf="authService.isLoggedIn() && !authService.isAdmin()" class="grid gap-3">
+            <div>
+              <p style="font-size: 20px;">Enviar avaliação como <span style="color: red">*</span></p>
+            </div>
+            <div class="flex gap-5">
+              <div>
+                <p>{{authService.getUserName()}}</p>
+                <input type="radio" name="username_review" value="{{authService.getUserName()}}" [(ngModel)]="username" style="cursor: pointer;">
+              </div>
+              <div>
+                <p>Anônimo</p>
+                <input type="radio" name="username_review" value="Anônimo" [(ngModel)]="username" style="cursor: pointer;">
+              </div>
+            </div>
           </div>
         </div>
         <div class="grid gap-1">
@@ -115,8 +132,9 @@
   <div class="secao-avaliacoes">
     <div class="lista-reviews-container">
       <div *ngFor="let review of allReviews" class="review-card">
-        <div class="flex gap-2">
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" style="background-color: #000; border-radius: 50%;"
+        <div class="flex justify-between items-center">
+          <div class="flex gap-2">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" style="background-color: #000; border-radius: 50%;"
             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff"
             viewBox="0 0 24 24">
             <path fill-rule="evenodd"
@@ -124,6 +142,14 @@
               clip-rule="evenodd" />
           </svg>
           <p>{{review.username}}</p>
+          </div>
+          <div>
+            <button style="background-color: red; border-radius: 50%; padding: .25rem; cursor: pointer;" (click)="delete(review.reviewId)">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+              </svg>              
+            </button>
+          </div>
         </div>
         <div class="flex items-center gap-3">
           <p class="review-title">{{ review.title }}</p>

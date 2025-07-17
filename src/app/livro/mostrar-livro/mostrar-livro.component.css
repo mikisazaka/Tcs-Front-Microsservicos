@@ -148,6 +148,13 @@ button {
   color: white;
   border-radius: 5px;
   border: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#btn-enviar-avaliacao:hover {
+  background-color: #37628a;
+  transition: all 0.3s ease;
 }
 
 .secao-avaliacoes {

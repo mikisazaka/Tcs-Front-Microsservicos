@@ -6,10 +6,10 @@ import { Book } from 'app/models/bookDetail.model';
 import { List } from 'app/models/list.model';
 import { Review } from 'app/models/review.model';
 import { LikeService } from 'app/services/interactions/like.service';
-import { ListService } from 'app/services/interactions/list.service';
+import { ListService } from 'app/services/list/list.service';
 import { ReviewService } from 'app/services/review/review.service';
 import { initFlowbite } from 'flowbite';
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -49,6 +49,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
 
   titulo: string = '';
   comentario: string = '';
+  username: string = ''
 
   livro$?: Observable<Book | null>;
   API_URL = 'http://localhost:8887/book';
@@ -70,6 +71,10 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
+    if(this.authService.isLoggedIn()) {
+      this.username = this.authService.getUserName();
+    }
+
     if (id) {
       this.livro$ = this.http.get<Book>(`${this.API_URL}/${id}`).pipe(
         tap((livro: Book) => {
@@ -77,15 +82,6 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
             this.verificarStatusDoLike(livro.id);
           }
           this.livroId = livro.id;
-
-          this.listService.getChecklist(livro.id).subscribe({
-            next: (checklist) => {
-              this.listaEscolhida = checklist?.status ?? '';
-            },
-            error: (err) => {
-              console.warn('Checklist não encontrado (ok):', err);
-            }
-          });
         }),
         catchError((error) => {
           console.error('Livro não encontrado: ', error);
@@ -96,7 +92,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
         this.allReviews = response.reviews;
         this.totalCount = response.totalCount;
         this.averageRating = response.avg;
-      })
+      });
     }
   }
 
@@ -140,6 +136,31 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
         'Você precisa fazer login para adicionar um livro em uma lista.',
         'warning'
       );
+    }
+  }
+
+  delete(reviewId: number) {
+    if (this.authService.isLoggedIn()) {
+      this.reviewService.removeReview(reviewId).subscribe({
+        next: () => {
+          Swal.fire(
+            'Sucesso!',
+            'Sua avaliação foi excluída.',
+            'success'
+          ).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        },
+        error: (err) => {
+          Swal.fire(
+            'Erro!',
+            'Erro ao concluir a ação.',
+            'error'
+          );
+        }
+      });
     }
   }
 
@@ -212,6 +233,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
             parseInt(id),
             this.rating,
             this.titulo,
+            this.username,
             this.comentario
           )
           .subscribe({
@@ -224,14 +246,16 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
                 confirmButtonText: 'OK',
               });
 
-              this.allReviews.unshift(novaReview);
+              // this.allReviews.unshift(novaReview);
 
-              this.totalCount++;
+              // this.totalCount++;
 
-              this.titulo = '';
-              this.comentario = '';
-              this.rating = 0;
-              this.hoverRating = 0;
+              // this.titulo = '';
+              // this.comentario = '';
+              // this.rating = 0;
+              // this.hoverRating = 0;
+
+              window.location.reload()
             },
             error: (error) => {
               Swal.fire({
