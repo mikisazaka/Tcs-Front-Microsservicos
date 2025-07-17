@@ -3,7 +3,7 @@ import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { List } from 'app/models/list.model';
 import { BookService } from 'app/services/book/book.service';
-import { ListService } from 'app/services/list/list.service';
+import { ListService } from 'app/services/interactions/list.service';
 // import { Status } from 'app/models/status.enum'; // Removido pois não é mais usado
 
 @Component({
@@ -58,18 +58,18 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.listarCheckList().subscribe((value =>{
+    /*this.service.listar().subscribe((value =>{
       this.listaCheckList = value;
       this.getList();
       this.getBook();
-    }))
+    }))*/
   }
 
-  getList(): void {
-    this.service.listarCheckList().subscribe((lists) =>{
+  /*getList(): void {
+    this.service.listar().subscribe((lists) =>{
       this.listaCheckList = lists;
     })
-  }
+  }*/
 
   getBook(): void {
     for (let i = 0; i < this.listaCheckList.length; i++) {

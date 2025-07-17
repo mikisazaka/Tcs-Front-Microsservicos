@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 export class ListService {
   private readonly API_URL = 'http://localhost:8889/checklist';
 
+  listsCache: List[] = [];
+
   constructor(
     private http: HttpClient,
     public authService: AuthService
@@ -20,7 +22,7 @@ export class ListService {
     if (this.authService.isLoggedIn()) {
       const userId = this.authService.getUserId();
       const list = { userId, bookId, status }
-      return this.http.post<List>(`${this.API_URL}`, list);
+      return this.http.post<List>(`${this.API_URL}/adicionarChecklist`, list);
     } else {
       Swal.fire(
         'Acesso Negado',
@@ -33,8 +35,35 @@ export class ListService {
 
   listar(status: string): Observable<List[]> {
     const userId = this.authService.getUserId();
-    const url = `${this.API_URL}/${userId}/${status}`;
-    return this.http.get<List[]>(`${this.API_URL}`);
+    const url = `${this.API_URL}/checklistUsuario/${userId}/${status}`;
+    return this.http.get<List[]>(url);
+  }
+
+  list(bookId: number, status: String): Observable<List> {
+    if (this.authService.isLoggedIn()) {
+      const userId = this.authService.getUserId();
+
+      const url = `${this.API_URL}/checklistUsuario/${userId}/${status}`;
+
+      return this.http.post<List>(url, null);
+    } else {
+      Swal.fire(
+        'Acesso Negado',
+        'Você precisa fazer login para adicionar um livro à lista.',
+        'warning'
+      );
+      return EMPTY;
+    }
+  }
+
+  listarCheckList(): Observable<List[]> {
+    const userId = this.authService.getUserId();
+    const url = `${this.API_URL}/checklistUsuario/${userId}`;
+    return this.http.get<List[]>(url);
+  }
+
+  getStatus(userId: number, status: string): Observable<List[]> {
+    return this.http.get<List[]>(`${this.API_URL}/checklistUsuario/${userId}`);
   }
 
 }

@@ -2,6 +2,17 @@ body {
   margin: 0;
 }
 
+input:focus {
+  border: 1px solid #753e2e;
+}
+
+label,
+input,
+button {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .r-18 {
   background-color: #000;
 }
@@ -70,7 +81,7 @@ body {
   padding: 1.5rem;
   border-radius: 10px;
   max-width: 1200px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .imagem-livro img {
@@ -84,8 +95,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  flex: 1; 
-  min-width: 300px; 
+  flex: 1;
+  min-width: 300px;
 }
 
 .titulo-livro {
@@ -141,7 +152,7 @@ body {
 
 .secao-avaliacoes {
   max-width: 1200px;
-  margin: 2rem auto 0 auto; 
+  margin: 2rem auto 0 auto;
 }
 
 .titulo-secao-avaliacoes {
@@ -163,8 +174,8 @@ body {
   border-radius: 8px;
   padding: 1rem;
   width: 100%;
-  max-width: 400px; 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .review-title {
