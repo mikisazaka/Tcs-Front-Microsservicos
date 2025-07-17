@@ -115,9 +115,16 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
   }
 
   addLista() {
-    if (this.authService.isLoggedIn() && this.listaEscolhida.trim().length != 0) {
-      this.listService.adicionarLista(this.livroId!, this.listaEscolhida).subscribe({})
-      this.listaEscolhida = '';
+    if (this.authService.isLoggedIn()) {
+      this.listService.adicionarLista(this.livroId!, this.listaEscolhida).subscribe({
+        next: () => {
+          Swal.fire('Sucesso', 'Livro adicionado à sua checklist!', 'success');
+        },
+        error: (err) => {
+          console.error('Erro ao adicionar livro:', err);
+          Swal.fire('Erro', 'Ocorreu um erro ao adicionar o livro.', 'error');
+        }
+      });
     } else {
       Swal.fire(
         'Acesso Negado',
@@ -134,7 +141,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
       this.isLiked = !this.isLiked;
 
       this.likeService.like(bookId).subscribe({
-        next: () => {},
+        next: () => { },
         error: (err) => {
           this.isLiked = estadoAnterior;
         },

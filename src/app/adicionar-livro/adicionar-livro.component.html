@@ -49,17 +49,16 @@
                     </button>
 
                     <div id="genreRadio"
-                        class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
+                        class="z-10 hidden w-48 border border-gray-300 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:divide-gray-600">
                         <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownGenre" *ngFor="let genre of genres">
                             <li>
                                 <div class="flex items-center">
                                     <input [id]="genre" type="radio" [value]="genre" name="genre" required
                                         [(ngModel)]="book.gender" (change)="selecionarGenero(genre)" id="genre"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        class="appearance-none w-4 h-4 text-orange-900 bg-gray-100 border-gray-300 focus:ring-orange-900 focus:ring-2">
                                     <label for="{{genre}}"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{genre}}</label>
+                                        class="ms-2 text-sm font-medium text-gray-900">{{genre}}</label>
                                 </div>
                             </li>
                         </ul>
@@ -96,7 +95,7 @@
                     </button>
 
                     <div id="contentRatingRadio"
-                        class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
+                        class="z-10 hidden w-48 border border-gray-300 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:divide-gray-600">
                         <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownContentRating" *ngFor="let contentRating of contentRatings">
                             <li>
@@ -104,10 +103,9 @@
                                     <input [id]="contentRating.value" type="radio" [value]="contentRating.value" id="contentRating"
                                         name="contentRating" required [(ngModel)]="book.contentRating"
                                         (change)="selecionarClassificacao(contentRating.label)"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                                        dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        class="appearance-none w-4 h-4 text-orange-900 bg-gray-100 border-gray-300 focus:ring-orange-900 focus:ring-2">
                                     <label for="contentRating.value"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{contentRating.label}}</label>
+                                        class="ms-2 text-sm font-medium text-gray-900">{{contentRating.label}}</label>
                                 </div>
                             </li>
                         </ul>
