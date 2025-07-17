@@ -9,7 +9,7 @@ import { LikeService } from 'app/services/interactions/like.service';
 import { ListService } from 'app/services/interactions/list.service';
 import { ReviewService } from 'app/services/review/review.service';
 import { initFlowbite } from 'flowbite';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -77,6 +77,15 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
             this.verificarStatusDoLike(livro.id);
           }
           this.livroId = livro.id;
+
+          this.listService.getChecklist(livro.id).subscribe({
+            next: (checklist) => {
+              this.listaEscolhida = checklist?.status ?? '';
+            },
+            error: (err) => {
+              console.warn('Checklist não encontrado (ok):', err);
+            }
+          });
         }),
         catchError((error) => {
           console.error('Livro não encontrado: ', error);
@@ -87,7 +96,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
         this.allReviews = response.reviews;
         this.totalCount = response.totalCount;
         this.averageRating = response.avg;
-      });
+      })
     }
   }
 
