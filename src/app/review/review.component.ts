@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Review } from 'app/models/review.model';
 import { ReviewService } from 'app/services/review/review.service';
 
@@ -12,7 +13,8 @@ import { ReviewService } from 'app/services/review/review.service';
 export class ReviewComponent {
 
   constructor(
-    public reviewService: ReviewService 
+    public reviewService: ReviewService,
+    public router: Router
   ) {}
 
   listaReviews: Review[] = []
@@ -43,6 +45,10 @@ export class ReviewComponent {
     }
 
     return stars;
+  }
+
+  goToLivros() {
+    this.router.navigate(['/telaInicial'])
   }
 
 }

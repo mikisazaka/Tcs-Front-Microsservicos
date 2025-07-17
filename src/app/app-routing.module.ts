@@ -56,6 +56,10 @@ export const routes: Routes = [
     path: 'reviews/:id',
     loadChildren: () => import('./review/review.module').then(m => m.ReviewModule) 
   },
+  { 
+    path: 'list',
+    loadChildren: () => import('./list/list.module').then(m => m.ListModule) 
+  },
   {
     path: '**',
     component: NotFoundComponent
