@@ -134,7 +134,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
       this.isLiked = !this.isLiked;
 
       this.likeService.like(bookId).subscribe({
-        next: () => { },
+        next: () => {},
         error: (err) => {
           this.isLiked = estadoAnterior;
         },
@@ -146,10 +146,6 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
         'warning'
       );
     }
-  }
-
-  getStars(rating: number): string {
-    return '⭐'.repeat(rating) + '☆'.repeat(5 - rating);
   }
 
   getStarArray(rating: number): string[] {
