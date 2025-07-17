@@ -23,11 +23,11 @@ export class ReviewService {
     bookId: number,
     rating: number,
     title: string,
+    username: string,
     comment: string
   ): Observable<Review> {
     if (this.authService.isLoggedIn()) {
       const userId = this.authService.getUserId();
-      const username = this.authService.getUserName()
 
       const body = {
         userId: userId,
@@ -42,6 +42,10 @@ export class ReviewService {
     } else {
       return EMPTY;
     }
+  }
+
+  removeReview(reviewId: number) {
+    return this.http.delete<Review>(`${this.REVIEW_API_URL}/${reviewId}`);
   }
 
   getReviewsUsuario(): Observable<Review[]> {
