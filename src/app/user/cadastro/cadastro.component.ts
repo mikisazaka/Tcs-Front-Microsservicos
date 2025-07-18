@@ -92,15 +92,23 @@ export class CadastroComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.error('Erro no cadastro', err);
-        Swal.fire({
-          icon: 'error',
-          title: 'Ops! Algo deu errado',
-          text: 'Não foi possível concluir o cadastro.',
-          confirmButtonColor: '#a2543d',
-          confirmButtonText: 'OK, ENTENDI',
-        });
-      },
+        if(err.status === 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops! Algo deu errado',
+            text: 'Esse e-mail já está em uso.',
+            confirmButtonColor: '#a2543d',
+            confirmButtonText: 'OK, ENTENDI',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops! Algo deu errado',
+            text: 'Não foi possível concluir o cadastro.',
+            confirmButtonColor: '#a2543d',
+            confirmButtonText: 'OK, ENTENDI',
+          });
+        }}
     });
   }
 
