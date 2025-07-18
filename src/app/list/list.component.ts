@@ -58,11 +58,11 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*this.service.listar().subscribe((value =>{
+    this.service.listarSemStatus().subscribe((value =>{
       this.listaCheckList = value;
-      this.getList();
+      // this.getList();
       this.getBook();
-    }))*/
+    }))
   }
 
   /*getList(): void {
