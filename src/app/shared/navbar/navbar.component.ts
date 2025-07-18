@@ -44,4 +44,8 @@ export class NavbarComponent {
   goToReviews(userId: number) {
     this.router.navigate([`/reviews/${userId}`])
   }
+
+  goToList() {
+    this.router.navigate([`/list`])
+  }
 }
