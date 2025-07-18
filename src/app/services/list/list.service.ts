@@ -41,4 +41,20 @@ export class ListService {
     getStatus(userId: number, status: string): Observable<List[]> {
       return this.http.get<List[]>(`${this.API_URL}/checklistUsuario/${userId}`);
     }
+
+    adicionarLista(bookId: number, status: string): Observable<List> {
+      if (this.authService.isLoggedIn()) {
+        const userId = this.authService.getUserId();
+        const list = { userId, bookId, status }
+        return this.http.post<List>(`${this.API_URL}/adicionarChecklist`, list);
+      } else {
+        Swal.fire(
+          'Acesso Negado',
+          'Você precisa fazer login para adicionar um livro em uma lista.',
+          'warning'
+        );
+        return EMPTY;
+      }
+    }
+
   }

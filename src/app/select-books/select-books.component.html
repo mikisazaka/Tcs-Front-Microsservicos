@@ -36,7 +36,7 @@
     <div>
       <button type="button" (click)="goToAdicionar()"
         class="inline-flex items-center text-white font-medium rounded-lg text-sm px-5 py-2.5 focus:ring-4 focus:outline-none focus:ring-brown-dark"
-        style="background-color: #a2543d;" onmouseover="this.style.backgroundColor='#ce7e5d'"
+        style="background-color: #a2543d; cursor: pointer;" onmouseover="this.style.backgroundColor='#ce7e5d'"
         onmouseout="this.style.backgroundColor='#a2543d'">
         <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -53,7 +53,6 @@
         <th scope="col" class="px-6 py-3">Nome</th>
         <th scope="col" class="px-6 py-3">Autor</th>
         <th scope="col" class="px-6 py-3">Ano de Lançamento</th>
-        <th scope="col" class="px-6 py-3">Quantidade de Páginas</th>
         <th scope="col" class="px-6 py-3">Class. Indicativa</th>
         <th scope="col" class="px-6 py-3">Gênero</th>
       </tr>
@@ -68,7 +67,6 @@
         </th>
         <td class="px-6 py-4">{{livro.author}}</td>
         <td class="px-6 py-4">{{livro.publishedYear}}</td>
-        <td class="px-6 py-4">{{livro.pagesQuantity}}</td>
         <td class="px-6 py-4">
           <span class="text-xs font-medium me-2 px-2.5 py-0.5 rounded-full"
             [ngClass]="contentRatingColors[livro.contentRating]">{{ contentRatingLabels[livro.contentRating] || 'N/A' }}</span>
