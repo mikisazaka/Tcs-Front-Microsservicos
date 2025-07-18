@@ -1,24 +1,24 @@
-<div *ngIf="listaReviews" class="secao-avaliacoes" style="margin-top: 3rem">
+<div *ngIf="listaReviews && authService.isLoggedIn()" class="secao-avaliacoes" style="margin-top: 3rem">
   <div class="lista-reviews-container">
     <div *ngFor="let review of listaReviews" class="review-card">
-      <div class="flex gap-2">
-        <svg
-          class="w-6 h-6 text-gray-800 dark:text-white"
-          style="background-color: #000; border-radius: 50%"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="#fff"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill-rule="evenodd"
+      <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" style="background-color: #000; border-radius: 50%;"
+          aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff"
+          viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
             d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
-            clip-rule="evenodd"
-          />
+            clip-rule="evenodd" />
         </svg>
-        <p>{{ review.username }}</p>
+        <p>{{review.username}}</p>
+        </div>
+        <div>
+          <button style="background-color: red; border-radius: 50%; padding: .25rem; cursor: pointer;" (click)="delete(review.reviewId)">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+            </svg>              
+          </button>
+        </div>
       </div>
       <div class="flex items-center gap-3">
         <p class="review-title">{{ review.title }}</p>
@@ -69,19 +69,26 @@
   </div>
 </div>
 
-<div *ngIf="!listaReviews" class="grid justify-center text-center gap-5" style="margin-top: 10rem;">
-  <div>
-    <p style="font-weight: 500; font-size: 30px">
-      Você ainda possui avaliações!
-    </p>
-    <p>Navegue pelo catálogo e faça sua primeira avaliação.</p>
+<div *ngIf="!listaReviews" class="grid justify-center text-center" 
+style="background-image: url('../../assets/images/n-data.svg'); height: calc(100vh - 82px); background-repeat: no-repeat; background-position: center;">
+  <div style="margin-top: 25rem;">
+    <div style="background-color: transparent; border-radius: 5px; padding: .5rem;">
+      <p style="font-weight: bold; font-size: 30px">
+        Você ainda possui avaliações!
+      </p>
+      <p>Navegue pelo catálogo e faça sua primeira avaliação.</p>
+    </div>
+    <div class="flex justify-center" style="margin-top: 1.5rem;">
+      <button
+      (click)="goToLivros()"
+      id="btn-ver-livros"
+    >
+      VER LIVROS
+    </button>
+    </div>
   </div>
-  <div class="flex justify-center">
-    <button
-    (click)="goToLivros()"
-    id="btn-ver-livros"
-  >
-    VER LIVROS
-  </button>
-  </div>
+</div>
+
+<div *ngIf="!authService.isLoggedIn()" class="flex justify-center" style="margin-top: 25rem;">
+  <p style="font-size: 30px;">Você precisa fazer login para ver suas avaliações!</p>
 </div>

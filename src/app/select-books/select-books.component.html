@@ -55,6 +55,7 @@
         <th scope="col" class="px-6 py-3">Ano de Lançamento</th>
         <th scope="col" class="px-6 py-3">Class. Indicativa</th>
         <th scope="col" class="px-6 py-3">Gênero</th>
+        <th scope="col" class="px-6 py-3 text-center">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -72,7 +73,7 @@
             [ngClass]="contentRatingColors[livro.contentRating]">{{ contentRatingLabels[livro.contentRating] || 'N/A' }}</span>
         </td>
         <td class="px-6 py-4">{{livro.gender}}</td>
-        <td class="px-6 py-4">
+        <td class="px-6 py-4 flex justify-center">
           <div class="flex items-center gap-x-2">
             <button type="button" class="text-brown-dark bg-brown-light hover:bg-beige-light focus:ring-4 focus:outline-none focus:ring-brown-light
                 font-medium rounded-lg text-xs px-3 py-1.5 text-center" (click)="goToEditar(livro.id)">Editar</button>
