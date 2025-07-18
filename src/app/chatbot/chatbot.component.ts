@@ -66,7 +66,7 @@ Nosso aplicativo permite aos usuários: ranquear livros, adicioná-los a uma lis
     - SUA RESPOSTA CORRETA (usando o contexto): "O autor de Duna é Frank Herbert."
     - SUA RESPOSTA INCORRETA (ignorando o contexto): "De qual livro você está falando?"
 
---- FIM DAS INSTRUÇÕES ---  
+--- FIM DAS INSTRUÇÕES ---
     `;
 
     const chatHistory = [
