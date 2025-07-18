@@ -25,18 +25,29 @@
         <div>
           <button type="button" *ngIf="!authService.isAdmin() && authService.isLoggedIn()" (click)="goToLikes()" style="cursor: pointer; color: #a2543d;" class="bg-white border border-gray-300 focus:outline-none
           font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:text-white dark:border-gray-600
-          dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">Curtidos</button>
+          dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">
+          Curtidos</button>
         </div>
         <div>
           <button type="button" *ngIf="!authService.isAdmin() && authService.isLoggedIn()" (click)="goToReviews(authService.getUserId())" style="cursor: pointer; color: #a2543d;" class="bg-white border border-gray-300 focus:outline-none
           font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:text-white dark:border-gray-600
-          dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">Avaliações
+          dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">
+          Avaliações
+        </button>
+        </div>
+        <div>
+          <button type="button" *ngIf="!authService.isAdmin() && authService.isLoggedIn()" (click)="goToList()" style="cursor: pointer; color: #a2543d;" class="bg-white border border-gray-300 focus:outline-none
+          font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:text-white dark:border-gray-600
+          dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">
+          Minha Lista
         </button>
         </div>
         <div>
           <button type="button" *ngIf="authService.isLoggedIn()" (click)="logout()" style="cursor: pointer; color: #a2543d;" class="bg-white border border-gray-300 focus:outline-none
           font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:text-white dark:border-gray-600
-          dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">Logout</button>
+          dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">
+          Logout
+        </button>
         </div>
         <div>
           <!-- <button
