@@ -132,11 +132,18 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
     if (this.authService.isLoggedIn()) {
       this.listService.adicionarLista(this.livroId!, this.listaEscolhida).subscribe({
         next: () => {
-          Swal.fire('Sucesso', 'Livro adicionado à sua checklist!', 'success');
+          Swal.fire(
+            'Sucesso', 
+            'Livro adicionado à sua checklist!', 
+            'success'
+          )
         },
         error: (err) => {
-          console.error('Erro ao adicionar livro:', err);
-          Swal.fire('Erro', 'Ocorreu um erro ao adicionar o livro.', 'error');
+          Swal.fire(
+            'Erro', 
+            'Ocorreu um erro ao adicionar o livro.', 
+            'error'
+          );
         }
       });
     } else {
@@ -223,8 +230,11 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
         'Por favor, faça login!',
         'Você precisa estar logado para fazer uma avaliação.',
         'warning'
-      );
-
+      ).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     } else if (this.rating < 1 || this.comentario == '') {
       Swal.fire({
         icon: 'error',

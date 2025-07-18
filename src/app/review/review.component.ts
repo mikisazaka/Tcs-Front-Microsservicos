@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/auth/auth.service';
 import { Review } from 'app/models/review.model';
 import { ReviewService } from 'app/services/review/review.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-review',
@@ -14,7 +16,8 @@ export class ReviewComponent {
 
   constructor(
     public reviewService: ReviewService,
-    public router: Router
+    public router: Router,
+    public authService: AuthService
   ) {}
 
   listaReviews: Review[] = []
@@ -50,5 +53,30 @@ export class ReviewComponent {
   goToLivros() {
     this.router.navigate(['/telaInicial'])
   }
+
+  delete(reviewId: number) {
+      if (this.authService.isLoggedIn()) {
+        this.reviewService.removeReview(reviewId).subscribe({
+          next: () => {
+            Swal.fire(
+              'Sucesso!',
+              'Sua avaliação foi excluída.',
+              'success'
+            ).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
+          },
+          error: (err) => {
+            Swal.fire(
+              'Erro!',
+              'Erro ao concluir a ação.',
+              'error'
+            );
+          }
+        });
+      }
+    }
 
 }

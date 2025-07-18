@@ -53,7 +53,7 @@ export const routes: Routes = [
     loadChildren: () => import('./likes/likes.module').then(m => m.LikesModule)
   },
   { 
-    path: 'reviews/:id',
+    path: 'reviews',
     loadChildren: () => import('./review/review.module').then(m => m.ReviewModule) 
   },
   { 
