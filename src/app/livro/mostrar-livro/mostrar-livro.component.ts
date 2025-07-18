@@ -71,6 +71,10 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
+    if(this.authService.isLoggedIn()) {
+      this.username = this.authService.getUserName();
+    }
+
     if (id) {
       this.livro$ = this.http.get<Book>(`${this.API_URL}/${id}`).pipe(
         tap((livro: Book) => {
