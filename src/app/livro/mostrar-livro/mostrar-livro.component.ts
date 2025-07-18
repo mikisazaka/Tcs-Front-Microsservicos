@@ -71,10 +71,6 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
-    if(this.authService.isLoggedIn()) {
-      this.username = this.authService.getUserName();
-    }
-
     if (id) {
       this.livro$ = this.http.get<Book>(`${this.API_URL}/${id}`).pipe(
         tap((livro: Book) => {
@@ -82,6 +78,15 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
             this.verificarStatusDoLike(livro.id);
           }
           this.livroId = livro.id;
+
+          this.listService.getChecklist(livro.id).subscribe({
+            next: (checklist) => {
+              this.listaEscolhida = checklist?.status ?? '';
+            },
+            error: (err) => {
+              console.warn('Checklist não encontrado (ok):', err);
+            }
+          });
         }),
         catchError((error) => {
           console.error('Livro não encontrado: ', error);
@@ -92,7 +97,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
         this.allReviews = response.reviews;
         this.totalCount = response.totalCount;
         this.averageRating = response.avg;
-      });
+      })
     }
   }
 
