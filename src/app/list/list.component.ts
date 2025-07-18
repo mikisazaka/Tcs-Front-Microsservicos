@@ -3,7 +3,7 @@ import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { List } from 'app/models/list.model';
 import { BookService } from 'app/services/book/book.service';
-import { ListService } from 'app/services/interactions/list.service';
+import { ListService } from 'app/services/list/list.service';
 // import { Status } from 'app/models/status.enum'; // Removido pois não é mais usado
 
 @Component({
