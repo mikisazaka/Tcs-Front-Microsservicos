@@ -13,6 +13,11 @@ button:hover {
   isolation: isolate;
 }
 
+.book-image-container {
+  box-shadow: 2px 2px 8px #000000;
+  border-radius: 10px;
+}
+
 .book-image-container,
 .book-info {
   grid-column: 1 / -1;
