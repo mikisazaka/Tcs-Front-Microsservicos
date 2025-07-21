@@ -4,6 +4,8 @@ import { BookService } from 'app/services/book/book.service';
 import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { Router } from '@angular/router';
+import { RecommendationService } from 'app/services/recommendation/recommendation.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-recomendar-livros',
@@ -13,25 +15,41 @@ import { Router } from '@angular/router';
 })
 export class RecomendarLivrosComponent implements OnInit {
   recommendedBooks: Book[] = [];
-  apiBaseUrl = 'http://localhost:8080/api';
+  apiBaseUrl = 'http://localhost:8886/recommendations';
 
   constructor(
-    private livroService: BookService,
+    private bookService: BookService,
     private authService: AuthService,
+    private recommendationService: RecommendationService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    const userId = this.authService.getUserId()
-    this.livroService.getRecomendados(userId).subscribe({
-      next: (books: Book[]) => (this.recommendedBooks = books),
-      error: (err: any) => console.error('Erro ao carregar recomendações:', err)
+    const userId = this.authService.getUserId();
+    this.recommendationService.getRecomendacoes().subscribe({
+      next: (books) => {
+        const observables = books.map(book => 
+          this.bookService.encontrarPorId(book.id)
+        );
+
+        forkJoin(observables).subscribe({
+          next: (detalhes) => {
+            this.recommendedBooks = detalhes;
+          },
+          error: (err) => {
+            console.error('Erro ao buscar detalhes:', err)
+          }
+        })
+      },
+      error: (err) => {
+        console.error('Erro ao carregar recomendações:', err)
+      }
     });
   }
 
- goToLivro(id: number | undefined): void {
-  if (id !== undefined) {
-    this.router.navigate(['/livro', id]);
+  goToLivro(id: number | undefined): void {
+    if (id !== undefined) {
+      this.router.navigate(['/livro', id]);
+    }
   }
-}
 }
