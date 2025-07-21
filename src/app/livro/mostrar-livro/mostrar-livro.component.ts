@@ -30,8 +30,9 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
     }
   }
 
-  isLiked: boolean = false;
+  isLiked: boolean | null = null;
   livroId?: number;
+  userId?: number;
 
   listaEscolhida: string = '';
   status = [
@@ -73,15 +74,17 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
 
     if(this.authService.isLoggedIn()) {
       this.username = this.authService.getUserName();
+      this.userId = this.authService.getUserId();
     }
 
     if (id) {
       this.livro$ = this.http.get<Book>(`${this.API_URL}/${id}`).pipe(
         tap((livro: Book) => {
-          if (livro) {
+          this.livroId = livro.id;
+
+          if (this.authService.isLoggedIn() && this.userId) {
             this.verificarStatusDoLike(livro.id);
           }
-          this.livroId = livro.id;
 
           this.listService.getChecklist(livro.id).subscribe({
             next: (checklist) => {
