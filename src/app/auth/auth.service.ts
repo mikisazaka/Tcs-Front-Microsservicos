@@ -42,6 +42,7 @@ export class AuthService {
     }
   }
 
+  
   public getUserName(): string {
     const decodedToken = this.getDecodedToken();
     return decodedToken.name;

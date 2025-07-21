@@ -6,11 +6,10 @@ import { Book } from 'app/models/book.model';
 @Injectable({
   providedIn: 'root'
 })
-
 export class BookService {
 
   livrosCache: Book[] = [];
-  private readonly API_URL = 'http://localhost:8887/book'
+  private readonly API_URL = 'http://localhost:8887/book';
 
   constructor(private http: HttpClient) { }
 
@@ -52,12 +51,17 @@ export class BookService {
 
   filtrarPorTituloClassificacao(contentRating: string, title: string): Observable<Book[]> {
     let params = new HttpParams();
-  if (contentRating) {
-    params = params.set('contentRating', contentRating);
-  }
-  if (title) {
-    params = params.set('title', title);
-  }
+    if (contentRating) {
+      params = params.set('contentRating', contentRating);
+    }
+    if (title) {
+      params = params.set('title', title);
+    }
     return this.http.get<Book[]>(`${this.API_URL}/filter`, { params });
+  }
+
+  getRecomendados(userId: number): Observable<Book[]> {
+    const params = new HttpParams().set('userId', userId.toString());
+    return this.http.get<Book[]>(`${this.API_URL}/recomendados`, { params });
   }
 }
