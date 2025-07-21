@@ -21,11 +21,19 @@ export class ReviewComponent {
   ) {}
 
   listaReviews: Review[] = []
+  public readonly apiBaseUrlLivro = 'http://localhost:8887'
 
   ngOnInit(): void {
     this.reviewService.getReviewsUsuario().subscribe((value) => {
-      this.listaReviews = value
+      this.listaReviews = value.map(review => ({
+        ...review,
+        isExpanded: false 
+      }));
     }) 
+  }
+
+  toggleComment(review: any): void {
+    review.isExpanded = !review.isExpanded;
   }
 
   getStarArray(rating: number): string[] {
