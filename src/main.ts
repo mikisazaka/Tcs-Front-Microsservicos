@@ -4,4 +4,4 @@ import 'flowbite';
 
 platformBrowser()
   .bootstrapModule(AppModule)
-  .catch((err: any) => console.error(err));
+  .catch((err) => console.error(err));
