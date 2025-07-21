@@ -48,7 +48,7 @@ export class LikeService {
     const url = `${this.API_URL}/existe/${userId}/${bookId}`;
 
     return this.http.get(url, { responseType: 'text' }).pipe(
-      map(() => true),
+      map(response => response === 'true'),
       catchError(() => {
         return of(false);
       })
