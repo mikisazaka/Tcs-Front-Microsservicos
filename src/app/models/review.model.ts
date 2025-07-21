@@ -10,4 +10,5 @@ export interface Review {
     username: string
     createdAt: string
     book?: Book
+    isExpanded?: boolean;
 }
