@@ -3,6 +3,6 @@ import { Review } from "./review.model";
 
 export interface ReviewResponse {
     reviews: Review[],
-    totalCount: number,
+    total: number,
     avg: number,
 }
