@@ -6,6 +6,6 @@ export interface Book {
     gender: string;
     pagesQuantity: number;
     contentRating: string;
-    image: File | null;
+    image?: File | null;
     imagePath?: string;
 }
