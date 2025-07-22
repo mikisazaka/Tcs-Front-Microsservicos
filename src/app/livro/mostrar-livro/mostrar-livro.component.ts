@@ -51,6 +51,9 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
   totalCount: number = 0;
   averageRating: number = 0;
 
+  currentPage: number = 1;
+  pageSize: number = 6;
+
   titulo: string = '';
   comentario: string = '';
   username: string = ''
@@ -103,14 +106,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
           return of(null);
         })
       );
-      this.reviewService.getReviewsLivro(parseInt(id)).subscribe((response) => {
-        this.allReviews = response.reviews.map(review => ({
-          ...review,     
-          isExpanded: false  
-        }));
-        this.totalCount = response.totalCount;
-        this.averageRating = response.avg;
-      })
+      this.carregarReviews(parseInt(id));
     }
   }
 
@@ -300,4 +296,41 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
+  carregarReviews(bookId: number): void {
+    this.reviewService.getReviewsLivro(bookId, this.currentPage, this.pageSize)
+      .subscribe((response) => {
+        this.allReviews = response.reviews.map(review => ({
+          ...review,
+          isExpanded: false
+        }));
+        this.totalCount = response.total;
+        this.averageRating = response.avg;
+      });
+  }
+
+  get totalPages(): number {
+    if (!this.totalCount || this.totalCount === 0) {
+      return 1; 
+    }
+    return Math.ceil(this.totalCount / this.pageSize);
+  }
+
+  paginaAnterior(): void {
+    this.mudarPagina(this.currentPage - 1);
+  }
+
+  proximaPagina(): void {
+    this.mudarPagina(this.currentPage + 1);
+  }
+
+  mudarPagina(newPage: number): void {
+    if (newPage < 1 || newPage > this.totalPages) {
+      return; 
+    }
+  
+    this.currentPage = newPage;
+    this.carregarReviews(this.livroId!);
+  }
+
 }
