@@ -14,7 +14,7 @@
     <tbody>
       <tr *ngFor="let livro of listBooks" class="bg-white border-b hover:bg-beige-light">
         <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-          <img class="w-10 h-10 rounded-full" [src]=getImageUrl(livro.imagePath) alt="Capa do livro">
+          <a (click)="goToBook(livro.id)" style="cursor: pointer;"><img class="w-10 h-10 rounded-full" [src]=getImageUrl(livro.imagePath) alt="Capa do livro"></a>
           <div class="break-words whitespace-normal ps-3">
             <div class="text-base font-semibold">{{livro.title}}</div>
           </div>

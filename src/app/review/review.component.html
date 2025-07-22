@@ -4,7 +4,7 @@
   <div class="lista-reviews-container grid gap-5">
     <div *ngFor="let review of listaReviews" class="review-card flex gap-5" style="margin-bottom: 1.5rem;">
       <div style="height: 7.5rem; width: 5rem;">
-        <img [src]="apiBaseUrlLivro + '/images/' + review.book?.imagePath" [alt]="'Capa do livro ' + review.book?.title" />
+        <a style="cursor: pointer;" (click)="goToBook(review.bookId)"><img [src]="apiBaseUrlLivro + '/images/' + review.book?.imagePath" [alt]="'Capa do livro ' + review.book?.title" /></a>
       </div>
       <div class="grid">
         <div class="flex items-center gap-3">

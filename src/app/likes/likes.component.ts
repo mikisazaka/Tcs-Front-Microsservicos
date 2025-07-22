@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { Like } from 'app/models/like.model';
@@ -18,7 +19,8 @@ export class LikesComponent {
   constructor(
     public auth: AuthService,
     public service: LikeService,
-    public book: BookService
+    public book: BookService,
+    public router: Router
   ) {}
 
   contentRatings = [
@@ -79,4 +81,9 @@ export class LikesComponent {
       });
     }
   }
+
+  goToBook(bookId: number | undefined) {
+    this.router.navigate([`/livro/${bookId}`])
+  }
+
 }
