@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { List } from 'app/models/list.model';
@@ -19,7 +20,8 @@ export class ListComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public service: ListService,
-    public book: BookService
+    public book: BookService,
+    public router: Router
   ) {}
 
   contentRatings = [
@@ -78,5 +80,9 @@ export class ListComponent implements OnInit {
         this.listBooks.push(livro);
       });
     }
+  }
+
+  goToBook(bookId: number | undefined) {
+    this.router.navigate([`/livro/${bookId}`])
   }
 }

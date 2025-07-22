@@ -96,6 +96,7 @@ export class SelectBooksComponent implements AfterViewInit, OnInit {
               timer: 1500
             });
             this.livros = this.livros.filter((l: Book) => l.id !== id);
+            window.location.reload()
           },
           error: () => {
             Swal.fire({

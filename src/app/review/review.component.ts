@@ -89,4 +89,8 @@ export class ReviewComponent {
       }
     }
 
+    goToBook(bookId: number) {
+      this.router.navigate([`/livro/${bookId}`])
+    }
+
 }
