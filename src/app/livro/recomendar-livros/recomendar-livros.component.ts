@@ -19,7 +19,7 @@ export class RecomendarLivrosComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private authService: AuthService,
+    public authService: AuthService,
     private recommendationService: RecommendationService,
     private router: Router
   ) { }
