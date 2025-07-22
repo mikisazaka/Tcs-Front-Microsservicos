@@ -1,4 +1,4 @@
-<div *ngIf="!authService.isAdmin() && authService.isLoggedIn()" class="book-gallery flex flex-wrap gap-6 justify-center" style="color: #000; padding-top: 5rem; background-color: #fff; padding-bottom: 2rem;">
+<div class="book-gallery flex flex-wrap gap-6 justify-center" style="color: #000; padding-top: 5rem; background-color: #fff; padding-bottom: 2rem;">
   <div class="w-full text-center pb-6">
     <p style="font-weight: bold; font-size: 36px; color: #B68166;">
       RECOMENDADOS PARA VOCÊ
@@ -8,7 +8,7 @@
   <div *ngFor="let book of recommendedBooks" class="book-card">
     <div class="book-image-container">
       <img [src]="apiBaseUrl + '/images/' + book.imagePath" [alt]="'Capa do livro ' + book.title"
-        style="height: 28rem; width: 18rem; object-fit: cover; border-radius: 10px;">
+        style="height: 28rem; width: 18rem; object-fit: cover; border-radius: 10px;" class="img-capa-livro">
     </div>
     <div class="book-info">
       <button type="button" id="btn-titulo-livro" (click)="goToLivro(book.id)"
