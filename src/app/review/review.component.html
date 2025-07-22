@@ -1,5 +1,5 @@
-<div *ngIf="listaReviews && authService.isLoggedIn()" class="secao-avaliacoes grid justify-center" style="margin-top: 3rem">
-  <span style="font-size: 24px;">REVIEWS</span>
+<div *ngIf="listaReviews && listaReviews.length > 0 && authService.isLoggedIn()" class="secao-avaliacoes grid justify-center" style="margin-top: 3rem">
+  <span style="font-size: 20px; font-family: 'Merriweather', serif;" class="tt-rv">AVALIAÇÕES</span>
   <span class="divisor" style="margin-bottom: 3rem;"></span>
   <div class="lista-reviews-container grid gap-5">
     <div *ngFor="let review of listaReviews" class="review-card flex gap-5" style="margin-bottom: 1.5rem;">
@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<div *ngIf="!listaReviews" class="grid justify-center text-center" 
+<div *ngIf="listaReviews.length <= 0" class="grid justify-center text-center" 
 style="background-image: url('../../assets/images/n-data.svg'); height: calc(100vh - 82px); background-repeat: no-repeat; background-position: center;">
   <div style="margin-top: 25rem;">
     <div style="background-color: transparent; border-radius: 5px; padding: .5rem;">
