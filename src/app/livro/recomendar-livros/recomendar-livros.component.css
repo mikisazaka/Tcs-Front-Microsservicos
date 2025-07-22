@@ -6,6 +6,10 @@ button:hover {
     box-shadow: 2px 2px 6px #7a402e;
 }
 
+.book-gallery {
+  margin-top: 5%;
+}
+
 .book-card {
   display: grid;
   grid-template-columns: 1fr;

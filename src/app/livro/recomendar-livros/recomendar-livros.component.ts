@@ -15,7 +15,7 @@ import { forkJoin } from 'rxjs';
 })
 export class RecomendarLivrosComponent implements OnInit {
   recommendedBooks: Book[] = [];
-  apiBaseUrl = 'http://localhost:8886/recommendations';
+  apiBaseUrl = 'http://localhost:8887';
 
   constructor(
     private bookService: BookService,

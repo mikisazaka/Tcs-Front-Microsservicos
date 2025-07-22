@@ -5,6 +5,8 @@ import { Review } from 'app/models/review.model';
 import { ReviewService } from 'app/services/review/review.service';
 import Swal from 'sweetalert2';
 
+type ReviewWithExpansion = Review & { isExpanded: boolean };
+
 @Component({
   selector: 'app-review',
   standalone: false,
@@ -20,7 +22,7 @@ export class ReviewComponent {
     public authService: AuthService
   ) {}
 
-  listaReviews: Review[] = []
+  listaReviews: ReviewWithExpansion[] = []
   public readonly apiBaseUrlLivro = 'http://localhost:8887'
 
   ngOnInit(): void {

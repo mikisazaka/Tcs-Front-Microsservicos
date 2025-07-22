@@ -5,5 +5,6 @@ export const environment = {
       "http://localhost:8887",
       "http://localhost:8888",
       "http://localhost:8889",
+      "http://localhost:8886"
     ]
   };
