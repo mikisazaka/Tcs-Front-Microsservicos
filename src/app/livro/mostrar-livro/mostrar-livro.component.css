@@ -49,6 +49,11 @@ button {
   padding-right: .75rem;
 }
 
+.show-more-less {
+  color: rgb(38, 38, 216);
+  cursor: pointer;
+}
+
 .btn-i-like:hover {
   fill: red;
   color: red;

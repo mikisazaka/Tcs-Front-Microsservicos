@@ -174,7 +174,24 @@
           </div>
         </div>
         <p style="color: rgb(88, 88, 88); font-size: 14px;">{{review.createdAt | date:'dd/MM/yyyy HH:mm'}}</p>
-        <p class="review-comment">{{ review.comment }}</p>
+        <div>
+          <ng-container *ngIf="review.comment.length > 250">
+            <div *ngIf="!review.isExpanded">
+              <span>{{ review.comment | slice:0:250 }}...</span>
+              <a (click)="toggleComment(review)" class="show-more-less"> Mostrar mais</a>
+            </div>
+        
+            <div *ngIf="review.isExpanded">
+              <span>{{ review.comment }}</span>
+              <a (click)="toggleComment(review)" class="show-more-less"> Mostrar menos</a>
+            </div>
+        
+          </ng-container>
+        
+          <span *ngIf="review.comment.length <= 250">
+            {{ review.comment }}
+          </span>
+        </div>
       </div>
     </div>
   </div>

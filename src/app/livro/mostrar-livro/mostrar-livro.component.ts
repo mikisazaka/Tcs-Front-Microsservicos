@@ -12,12 +12,15 @@ import { initFlowbite } from 'flowbite';
 import { catchError, Observable, of, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 
+type ReviewWithExpansion = Review & { isExpanded: boolean };
+
 @Component({
   selector: 'app-mostrar-livro',
   standalone: false,
   templateUrl: './mostrar-livro.component.html',
   styleUrl: './mostrar-livro.component.css',
 })
+
 export class MostrarLivroComponent implements OnInit, AfterViewInit {
   @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
 
@@ -44,7 +47,7 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
   hoverRating: number = 0;
   stars: number[] = [1, 2, 3, 4, 5];
 
-  allReviews: Review[] = [];
+  allReviews: ReviewWithExpansion[] = [];
   totalCount: number = 0;
   averageRating: number = 0;
 
@@ -101,11 +104,18 @@ export class MostrarLivroComponent implements OnInit, AfterViewInit {
         })
       );
       this.reviewService.getReviewsLivro(parseInt(id)).subscribe((response) => {
-        this.allReviews = response.reviews;
+        this.allReviews = response.reviews.map(review => ({
+          ...review,     
+          isExpanded: false  
+        }));
         this.totalCount = response.totalCount;
         this.averageRating = response.avg;
       })
     }
+  }
+
+  toggleComment(review: any): void {
+    review.isExpanded = !review.isExpanded;
   }
 
   onStarHover(star: number): void {
