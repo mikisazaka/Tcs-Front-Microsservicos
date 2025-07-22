@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from 'app/auth/auth.service';
 import { ReviewResponse } from 'app/models/review-response';
@@ -11,12 +11,21 @@ import { Observable, EMPTY } from 'rxjs';
 export class ReviewService {
   private REVIEW_API_URL = 'http://localhost:8889/review';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+  ) {}
 
-  getReviewsLivro(bookId: number): Observable<ReviewResponse> {
-    const url = `${this.REVIEW_API_URL}/book/${bookId}`;
+  getReviewsLivro(
+    bookId: number,
+    page: number,
+    size: number
+  ): Observable<ReviewResponse> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
 
-    return this.http.get<ReviewResponse>(url);
+    return this.http.get<ReviewResponse>(`${this.REVIEW_API_URL}/book/${bookId}`, {params});
   }
 
   registrarReview(
