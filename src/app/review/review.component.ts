@@ -24,6 +24,7 @@ export class ReviewComponent {
 
   listaReviews: ReviewWithExpansion[] = []
   public readonly apiBaseUrlLivro = 'http://localhost:8887'
+  qtdReviews: number = this.listaReviews.length;
 
   ngOnInit(): void {
     this.reviewService.getReviewsUsuario().subscribe((value) => {

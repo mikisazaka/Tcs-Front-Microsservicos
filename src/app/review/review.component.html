@@ -1,5 +1,9 @@
 <div *ngIf="listaReviews && listaReviews.length > 0 && authService.isLoggedIn()" class="secao-avaliacoes grid justify-center" style="margin-top: 3rem">
-  <span style="font-size: 20px; font-family: 'Merriweather', serif;" class="tt-rv">AVALIAÇÕES</span>
+  <span style="font-size: 20px; font-family: 'Merriweather', serif;" class="tt-rv">AVALIAÇÕES - de 
+    <span>{{listaReviews[0].createdAt | date:'dd/MM/yyyy'}}</span>
+    até  
+    <span>{{listaReviews[qtdReviews].createdAt | date:'dd/MM/yyyy'}}</span>
+  </span>
   <span class="divisor" style="margin-bottom: 3rem;"></span>
   <div class="lista-reviews-container grid gap-5">
     <div *ngFor="let review of listaReviews" class="review-card flex gap-5" style="margin-bottom: 1.5rem;">

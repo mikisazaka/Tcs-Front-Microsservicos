@@ -7,6 +7,7 @@ import { UserService, Page } from '../../services/user/user.service';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -21,7 +22,8 @@ export class AdminPageComponent {
   // Injeta o serviço no construtor
   constructor(
     private userService: UserService, 
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -65,47 +67,55 @@ export class AdminPageComponent {
   }
 
   deletarUser(id: number) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Deseja prosseguir com a remoção do usuário?',
-      showDenyButton: true,
-      confirmButtonText: 'SIM',
-      denyButtonText: 'NÃO',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.userService.removerUsuario(id).subscribe({
-          next: () => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Usuário removido com sucesso!',
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            if (this.usersPage && this.usersPage.content) {
-              if (this.usersPage.content.length === 1 && this.currentPage > 0) {
-                this.carregarUsuarios(this.currentPage - 1);
+    if(this.authService.getUserId() != id) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Deseja prosseguir com a remoção do usuário?',
+        showDenyButton: true,
+        confirmButtonText: 'SIM',
+        denyButtonText: 'NÃO',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.userService.removerUsuario(id).subscribe({
+            next: () => {
+              Swal.fire({
+                icon: 'success',
+                title: 'Usuário removido com sucesso!',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              if (this.usersPage && this.usersPage.content) {
+                if (this.usersPage.content.length === 1 && this.currentPage > 0) {
+                  this.carregarUsuarios(this.currentPage - 1);
+                } else {
+                  this.carregarUsuarios(this.currentPage);
+                }
               } else {
-                this.carregarUsuarios(this.currentPage);
+                this.carregarUsuarios(0);
               }
-            } else {
-              this.carregarUsuarios(0);
-            }
-          },
-          error: () => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Erro ao remover o usuário',
-            });
-          },
-        });
-      } else if (result.isDenied) {
-        Swal.fire({
-          icon: 'info',
-          title: 'Remoção cancelada',
-          showConfirmButton: false,
-          timer: 1200,
-        });
-      }
-    });
+            },
+            error: () => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Erro ao remover o usuário',
+              });
+            },
+          });
+        } else if (result.isDenied) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Remoção cancelada',
+            showConfirmButton: false,
+            timer: 1200,
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Você não pode se excluir.',
+        confirmButtonText: 'OK',
+      })
+    }
   }
 }
