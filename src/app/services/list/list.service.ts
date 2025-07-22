@@ -33,7 +33,7 @@ export class ListService {
     }
   }
 
-  listar(status: string): Observable<List[]> {
+  listarPorStatus(status: string): Observable<List[]> {
     const userId = this.authService.getUserId();
     const url = `${this.API_URL}/checklistUsuario/${userId}/${status}`;
     return this.http.get<List[]>(url);
@@ -76,5 +76,11 @@ export class ListService {
     const userId = this.authService.getUserId();
     const url = `${this.API_URL}/checklistUsuario/${userId}`;
     return this.http.get<List[]>(url);
+  }
+
+  deletar(bookId: number): Observable<List> {
+    const userId = this.authService.getUserId();
+    const url = `${this.API_URL}/checklistUsuario/${userId}/${bookId}`;
+    return this.http.delete<List>(url);
   }
 }
