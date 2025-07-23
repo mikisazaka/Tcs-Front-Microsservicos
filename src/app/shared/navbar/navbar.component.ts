@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/auth/auth.service';
+import { SearchService } from 'app/services/search/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,9 @@ import { AuthService } from 'app/auth/auth.service';
 export class NavbarComponent {
 
   constructor(
-    public router: Router, 
+    public router: Router,
     public authService: AuthService,
+    public searchService: SearchService
   ) { }
 
   goToHome() {
@@ -47,5 +49,11 @@ export class NavbarComponent {
 
   goToList() {
     this.router.navigate([`/list`])
+  }
+
+  onSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const searchTerm = inputElement.value;
+    this.searchService.updateSearchTerm(searchTerm);
   }
 }

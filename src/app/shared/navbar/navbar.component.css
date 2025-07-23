@@ -22,3 +22,9 @@ button:hover {
     color: #fff;
     cursor: pointer;
 }
+
+.search-input {
+  border-radius: 5px;
+  border: none;
+  width: 25rem;
+}
