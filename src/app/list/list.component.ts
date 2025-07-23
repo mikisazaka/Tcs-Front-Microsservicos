@@ -1,9 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'app/auth/auth.service';
 import { Book } from 'app/models/book.model';
 import { List } from 'app/models/list.model';
+import { LivroComStatus } from 'app/models/livroComStatus.model';
 import { BookService } from 'app/services/book/book.service';
 import { ListService } from 'app/services/list/list.service';
+import { forkJoin, map } from 'rxjs';
 import Swal from 'sweetalert2';
 // import { Status } from 'app/models/status.enum'; // Removido pois não é mais usado
 
@@ -25,8 +28,8 @@ export class ListComponent implements OnInit {
     }
   }
 
+  livrosComStatus: LivroComStatus[] = [];
   listBooks: Book[] = [];
-  listFiltrados: Book[] = [];
   listaCheckList: List[] = [];
   filtroStatus: string = '';
 
@@ -96,12 +99,17 @@ export class ListComponent implements OnInit {
   }
 
   listarPorStatus(): void {
-    this.service.listarPorStatus(this.filtroStatus).subscribe((
-      (value) => {
+    if (this.filtroStatus === '') {
+      this.service.listarSemStatus().subscribe((value) => {
         this.listaCheckList = value;
-        this.getBook;
-      }
-    ))
+        this.getBook();
+      });
+    } else {
+      this.service.listarPorStatus(this.filtroStatus).subscribe((value) => {
+        this.listaCheckList = value;
+        this.getBook();
+      });
+    }
   }
 
   /*getList(): void {
@@ -111,20 +119,24 @@ export class ListComponent implements OnInit {
   }*/
 
   getBook(): void {
-    for (let i = 0; i < this.listaCheckList.length; i++) {
-      let id = this.listaCheckList[i].bookId;
-      this.book.encontrarPorId(id).subscribe((livro) => {
-        if (!this.hasLivro(livro)) {
-          this.listBooks.push(livro);
-        }
-      });
-    }
+    this.livrosComStatus = [];
+
+    const observables = this.listaCheckList.map(item =>
+      this.book.encontrarPorId(item.bookId).pipe(
+        // Retorna um objeto com livro e status corretamente pareado
+        map(livro => ({ livro, status: item.status }))
+      )
+    );
+
+    forkJoin(observables).subscribe((resultados) => {
+      this.livrosComStatus = resultados;
+    });
   }
 
   hasLivro(book: Book): boolean {
     for (let i = 0; i < this.listBooks.length; i++) {
       let livro = this.listBooks[i];
-      if (livro == book) {
+      if (livro.id === book.id) {
         return true;
       }
     } return false;
@@ -141,14 +153,23 @@ export class ListComponent implements OnInit {
       if (result.isConfirmed) {
         this.service.deletar(bookId).subscribe({
           next: () => {
+            this.listaCheckList = this.listaCheckList.filter(c => c.bookId !== bookId);
+            this.listBooks = this.listBooks.filter(b => b.id !== bookId);
+
             Swal.fire({
               icon: 'success',
               title: 'Livro removido com sucesso!',
               showConfirmButton: false,
               timer: 1500
             });
+
+            this.listarPorStatus();
           },
-          error: () => {
+          error: (err: HttpErrorResponse) => {
+            console.error('Erro real:', err);
+            console.error('Status:', err.status);
+            console.error('Mensagem:', err.message);
+            console.error('Body:', err.error);
             Swal.fire({
               icon: 'error',
               title: 'Erro ao remover da lista',
