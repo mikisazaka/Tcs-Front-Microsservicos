@@ -12,9 +12,9 @@
         </svg></button>
       <div id="dropdownAction" #dropdownMenu
         class="absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-        <ul class="py-1 text-sm text-gray-700" aria-labelledby="dropdownActionButton" *ngFor="let stt of status">
-          <li><a (click)="selecionarStatus(stt.value); listarPorStatus()" [ngClass]="statusColors[stt.value]"
-              class="block px-4 py-2">{{stt.label}}</a></li>
+        <ul class="py-1 text-sm text-gray-700" aria-labelledby="dropdownActionButton">
+          <li *ngFor="let stt of status"><a (click)="selecionarStatus(stt.value); listarPorStatus(); toggleDropdown()"
+              [ngClass]="statusColors[stt.value]" class="block px-4 py-2">{{stt.label}}</a></li>
         </ul>
       </div>
     </div>
@@ -32,21 +32,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let livro of listBooks, let i = index" class="bg-white border-b hover:bg-beige-light">
+      <tr *ngFor="let livro of livrosComStatus, let i = index" class="bg-white border-b hover:bg-beige-light">
         <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-          <img class="w-10 h-10 rounded-full" [src]=getImageUrl(livro.imagePath) alt="Capa do livro">
+          <img class="w-10 h-10 rounded-full" [src]=getImageUrl(livro.livro.imagePath) alt="Capa do livro">
           <div class="break-words whitespace-normal ps-3">
-            <div class="text-base font-semibold">{{livro.title}}</div>
+            <div class="text-base font-semibold">{{livro.livro.title}}</div>
           </div>
         </th>
-        <td class="px-6 py-4">{{livro.author}}</td>
-        <td class="px-6 py-4">{{livro.publishedYear}}</td>
+        <td class="px-6 py-4">{{livro.livro.author}}</td>
+        <td class="px-6 py-4">{{livro.livro.publishedYear}}</td>
         <td class="px-6 py-4">
           <span class="text-xs font-medium me-2 px-2.5 py-0.5 rounded-full"
-            [ngClass]="contentRatingColors[livro.contentRating]">{{ contentRatingLabels[livro.contentRating] || 'N/A'
+            [ngClass]="contentRatingColors[livro.livro.contentRating]">{{ contentRatingLabels[livro.livro.contentRating] || 'N/A'
             }}</span>
         </td>
-        <td class="px-6 py-4">{{livro.gender}}</td>
+        <td class="px-6 py-4">{{livro.livro.gender}}</td>
         <td class="px-6 py-4">
           <span style="color: rgb(97, 197, 97); font-weight: bold;" class="flex gap-3 items-center"
             *ngIf="listaCheckList[i].status == 'READ'">
@@ -71,11 +71,8 @@
         </td>
         <td class="px-6 py-4 flex justify-center">
           <div class="flex items-center gap-x-2">
-            <button type="button" class="text-brown-dark bg-brown-light hover:bg-beige-light focus:ring-4 focus:outline-none focus:ring-brown-light
-                font-medium rounded-lg text-xs px-3 py-1.5 text-center">Editar</button>
-
             <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium
-                rounded-lg text-xs px-3 py-1.5 text-center" (click)="deletarLivro(livro.id!)">Remover</button>
+                rounded-lg text-xs px-3 py-1.5 text-center" (click)="deletarLivro(livro.livro.id!)">Remover</button>
           </div>
         </td>
       </tr>
