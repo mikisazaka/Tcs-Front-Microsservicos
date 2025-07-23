@@ -19,7 +19,7 @@ export class RecomendarLivrosComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private authService: AuthService,
+    public authService: AuthService,
     private recommendationService: RecommendationService,
     private router: Router
   ) { }
@@ -45,6 +45,12 @@ export class RecomendarLivrosComponent implements OnInit {
         console.error('Erro ao carregar recomendações:', err)
       }
     });
+  }
+
+  isEmpty(): boolean {
+    if(this.recommendedBooks.length == 0) {
+      return true;
+    } return false;
   }
 
   goToLivro(id: number | undefined): void {
