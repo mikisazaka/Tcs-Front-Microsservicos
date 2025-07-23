@@ -4,13 +4,13 @@
       TODOS OS TÍTULOS
     </p>
   </div>
-  <div *ngFor="let livro of allBooks" class="book-card">
+  <div *ngFor="let livro of livrosExibicao" class="book-card">
     <div class="book-image-container">
       <img [src]="apiBaseUrl + '/images/' + livro.imagePath" [alt]="'Capa do livro ' + livro.title" style="height: 30rem; width: 20rem; object-fit: cover; border-radius: 10px;" class="img-capa-livro">
     </div>
     <div class="book-info">
       <button type="button" id="btn-titulo-livro" (click)="goToLivro(livro.id)" style="cursor: pointer; color: #a2543d; width: 17rem;" class="bg-white border border-gray-300 focus:outline-none
-          font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:text-white dark:border-gray-600 
+          font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:text-white dark:border-gray-600
           dark:hover:border-gray-600 dark:focus:ring-gray-700 hover:bg-gray-100">{{ livro.title }}</button>
     </div>
   </div>

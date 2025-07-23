@@ -7,6 +7,17 @@
       </a>
     </div>
 
+    <div>
+      <div class="search-container">
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Pesquisar por título..."
+    (input)="onSearch($event)"
+  >
+</div>
+    </div>
+
     <div class="font-medium flex justify-center items-center">
         <div>
           <button type="button" *ngIf="authService.isAdmin()" (click)="goToBooks()" style="cursor: pointer; color: #a2543d;" class="bg-white border border-gray-300 focus:outline-none
